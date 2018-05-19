@@ -2,8 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './mainApp';
 
-ReactDOM.render((
-  <App />
+var props = window.PROPS;
+
+ReactDOM.hydrate((
+  <App data={props} />
 ), document.getElementById('root'));
 
 if (module.hot) {

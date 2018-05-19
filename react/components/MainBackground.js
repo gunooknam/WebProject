@@ -8,14 +8,14 @@ const rightAngleStyle = {
     position: 'absolute',
     top: '50%',
     right: '30px',
-    'z-index': '10',
+    zIndex: '10',
     cursor: 'pointer',
 };
 const leftAngleStyle = {
     position: 'absolute',
     top: '50%',
     left: '30px',
-    'z-index': '10',
+    zIndex: '10',
     cursor: 'pointer',
 };
 
@@ -31,14 +31,14 @@ const fade = () => {
     next.toggle('active');
 }
 
-const MainBackground = () => {
-    return (
-        <div class='main-bg'>
+const MainBackground = ({ data }) => {
+        return (
+        <div className='main-bg'>
             <FaAngleLeft size={60} color="gray" style={leftAngleStyle} />
             <div>
-                <MainSliderItem index={1} active />
-                <MainSliderItem index={2} />
-                <MainSliderItem index={3} />
+                <MainSliderItem index={1} data={data[0]} active />
+                <MainSliderItem index={2} data={data[1]} />
+                <MainSliderItem index={3} data={data[2]} />
             </div>
             <FaAngleRight onClick={fade} size={60} color="gray" style={rightAngleStyle} />
         </div>

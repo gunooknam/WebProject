@@ -4,7 +4,7 @@ import FaAngleRight from 'react-icons/lib/fa/angle-right';
 import FaAngleLeft from 'react-icons/lib/fa/angle-left';
 
 const rightAngleStyle = {
-    'z-index': '10',
+    zIndex: '10',
     cursor: 'pointer',
     top: '50%',
     right: '0',
@@ -12,7 +12,7 @@ const rightAngleStyle = {
     position: 'absolute',
 };
 const leftAngleStyle = {
-    'z-index': '10',
+    zIndex: '10',
     cursor: 'pointer',
     top: '50%',
     left: '0',
@@ -20,11 +20,10 @@ const leftAngleStyle = {
     position: 'absolute',
 };
 
-let count = 0;
 const slideRight = (e) => {
     const children = e.currentTarget.previousSibling.childNodes[0];
     const nextPosition = (parseInt(children.style.left || 0) - 100);
-    const boundPosition = (children.childNodes.length-6)*-16.66667;
+    const boundPosition = (children.childNodes.length - 6) * -16.66667;
 
     children.style.left = (boundPosition > nextPosition) ?
         (boundPosition + '%') : (nextPosition + '%');
@@ -39,33 +38,20 @@ const slideLeft = (e) => {
         (boundPosition + '%') : (nextPosition + '%');
 }
 
-const Row = () => {
+const Row = ({ data }) => {
     return (
-        <div class='row'>
-            <div class='row-title'><span>이번주 인기 영화</span></div>
-            <div class='row-container'>
-            <FaAngleLeft onClick={(e) => slideLeft(e)} size={60} color="gray" style={leftAngleStyle} />
+        <div className='row'>
+            <div className='row-title'><span>이번주 인기 영화</span></div>
+            <div className='row-container'>
+                <FaAngleLeft onClick={(e) => slideLeft(e)} size={60} color="gray" style={leftAngleStyle} />
                 <div>
-                <div>
-                    <RowItem />
-                    <RowItem />
-                    <RowItem />
-                    <RowItem />
-                    <RowItem />
-                    <RowItem />
-                    <RowItem />
-                    <RowItem />
-                    <RowItem />
-                    <RowItem />
-                    <RowItem />
-                    <RowItem />
-                    <RowItem />
-                    <RowItem />
-                    <RowItem />
-                    <RowItem />
+                    <div>
+                        {data.map((item, index) => {
+                            return <RowItem key={data[index].id} data={data[index]}/>;
+                        })}
+                    </div>
                 </div>
-                </div>
-            <FaAngleRight onClick={(e) => slideRight(e)} size={60} color="gray" style={rightAngleStyle} />
+                <FaAngleRight onClick={(e) => slideRight(e)} size={60} color="gray" style={rightAngleStyle} />
             </div>
         </div>
     );

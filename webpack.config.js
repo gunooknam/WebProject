@@ -1,11 +1,13 @@
 const path = require('path');
 const webpack = require('webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const browserConfig = {
+    mode: 'development',
     entry: './react/main/main.js',
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, './react'),
+        path: path.resolve(__dirname, './public'),
     },
     devServer: {
         contentBase: './react/',
@@ -32,6 +34,7 @@ const browserConfig = {
 };
 
 const serverConfig = {
+    mode: 'development',
     entry: './bin/www',
     target: 'node',
     output: {
@@ -49,10 +52,10 @@ const serverConfig = {
             },
             {
                 test: /\.css$/,
-                use: [ 'css-loader/locals' ]
+                use: ['css-loader/locals']
             }
         ]
     },
 };
 
-module.exports = browserConfig;
+module.exports = [browserConfig, serverConfig];

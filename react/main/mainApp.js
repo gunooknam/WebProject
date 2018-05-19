@@ -3,18 +3,21 @@ import ReactDOM from 'react-dom';
 import Header from '../components/Header';
 import MainBackground from '../components/MainBackground';
 import Row from '../components/Row';
-// import '../css/main.css';
-// import mysql from 'mysql';
 
-const App = () => {
+const App = (props) => {
   return (
     <div>
       <Header />
-      <MainBackground />
-      <Row />
-      <Row />
-      <Row />
-      <Row />
+      <MainBackground data={props.data.mainData}/>
+      <Row data={props.data.sliderData}/>
+      <Row data={props.data.sliderData}/>
+      <Row data={props.data.sliderData}/>
+      <Row data={props.data.sliderData}/>
+      <Row data={props.data.sliderData}/>
+      <Row data={props.data.sliderData}/>
+      <script dangerouslySetInnerHTML={{
+        __html: 'window.PROPS=' + JSON.stringify(props.data)
+      }} />
     </div>
   );
 }
