@@ -1,1 +1,4 @@
 node_modules/
+server.js
+public/bundle.js
+bundle.js
