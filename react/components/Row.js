@@ -21,7 +21,8 @@ const leftAngleStyle = {
 };
 
 const slideRight = (e) => {
-    const children = e.currentTarget.previousSibling.childNodes[0];
+    const children = e.currentTarget.previousSibling.firstChild;
+    console.log(children.firstChild.style.width);
     const nextPosition = (parseInt(children.style.left || 0) - 100);
     const boundPosition = (children.childNodes.length - 6) * -16.66667;
 
@@ -30,7 +31,7 @@ const slideRight = (e) => {
 }
 
 const slideLeft = (e) => {
-    const children = e.currentTarget.nextSibling.childNodes[0];
+    const children = e.currentTarget.nextSibling.firstChild;
     const nextPosition = (parseInt(children.style.left || 0) + 100);
     const boundPosition = 0;
 
