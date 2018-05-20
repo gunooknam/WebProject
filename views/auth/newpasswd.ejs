@@ -1,0 +1,77 @@
+<% layout('../layout') -%>
+  <div class="container">
+	   <div id="passwordreset" style="margin-top:50px" class="mainbox col-md-5 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <div class="panel-title ">신규 비밀번호 설정 <i class="glyphicon glyphicon-edit"></i></div>
+                        </div>
+                        <div class="panel-body" >
+                            <form id="newpwdform" class="form-horizontal" role="form" method='post' action="/auth/newpasswd">
+                              <input type="hidden" name="email" value="<%= mail %>">
+                                <h3><%= mail %> 님의 신규 비밀번호</h3>
+                                <div class="form-group">
+                                    <div class="col-md-12" style="margin-bottom: 35px">
+                                        <input type="text" class="form-control" id="password"  name="password" placeholder="Password">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12" style="margin-bottom: 35px">
+                                        <input type="text" class="form-control" id="repassword" name="repassword" placeholder="Conform Password">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div >
+                                        <button id="btn-signup" type="submit" class="btn btn-block">Send</button>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12 control">
+                                        <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
+                                            비밀번호를 신중하게 입력하세요
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                         </div>
+                    </div>
+             </div>
+        </div>
+        <script>
+        $(function(){
+                $("#newpwdform").validate({
+                  rules: {
+                      password: {
+                             required: true,
+                             minlength : 6
+                       },
+                    repassword: {
+                             required : true,
+                             minlength : 6,
+                             equalTo : password
+                        }
+                  },
+                  messages : {
+                          password: {
+                               required : "필수로 입력하세요",
+                               minlength : "최소 {0}글자 이상이어야 합니다"
+                               },
+                          repassword: {
+                               required : "필수로 입력하세요",
+                               minlength : "최소 {0}글자 이상이어야 합니다",
+                               equalTo : "비밀번호가 일치하지 않습니다."
+                              }
+                  }
+              });
+       });
+        </script>
+        <style>
+        label.error {
+            color: red;
+            position: absolute;
+            width: 100%;
+            top: 45px;
+            line-height: 34px;
+            left: 0px;
+            text-align: center;
+        }
+        </style>
