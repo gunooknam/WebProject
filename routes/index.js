@@ -14,8 +14,6 @@ const query = (...args) => {
   });
 }
 
-/* GET home page. */
-
 router.get('/', function (req, res, next) {
     let data = {};
     query(`SELECT * FROM movie ORDER BY id LIMIT 3;`)
@@ -41,19 +39,10 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/welcome', function (req, res) {
-  res.render('welcome', {
-    user: req.user // get the user out of session and pass to template
+  console.log(req.user); //deserializeUser 함수가 페이지 넘어갈 때 마다 실행되면서 req.user에 내용을 채운다.
+  res.render('welcome', { // req.user에 내용이 있으면 현재 세션정보가 있으므로 로그인중이고, 없으면 로그인 중이지 않음
+    user: req.user
   });
 });
-
-/*
-function isLoggedIn(req, res, next) {
-  // if user is authenticated in the session, carry on
-  if (req.isAuthenticated())
-    return next();
-  // if they aren't redirect them to the home page
-  res.redirect('/');
-}
-*/
 
 module.exports = router;

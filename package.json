@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "NODE_ENV=development webpack-dev-server",
-    "ssr": "NODE_ENV=development webpack && NODE_ENV=development node server.js"
+    "ssr": "NODE_ENV=development webpack && NODE_ENV=development node server.js",
+    "ssr_w": "webpack && node server.js"
   },
   "dependencies": {
     "async": "^2.6.0",

@@ -1,6 +1,11 @@
   <!DOCTYPE html>
-      <html>
+      <html style="display:white">
         <head>
+          <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+          <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+          <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.20.5/sweetalert2.all.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/3.4.0/es5-shim.min.js"></script>
           <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.0.min.js" ></script>
           <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
           <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
@@ -11,72 +16,171 @@
           <%-scripts%>
           <%-stylesheets%>
         </head>
-        <style>
-        .footer {
-            color: #887;
-            background-color: #eee;
-            padding-top: 30px;
-            padding-bottom: 30px;
-            margin-bottom: 0px;
-            bottom:0;
-
-        }
-        html {
-         height: 100%;
-         }
-         body {
-         margin: 0;
-         height: 100%;
-         }
-         .wrap {
-         min-height: 100%;
-         position: relative;
-         padding-bottom: 19px; /* footer height */
-       }
-        </style>
         <body>
-          <header>
-            <br>
-            <br>
-            <br>
-            <br>
-            <%-blocks.header%>
-            <% if( typeof user !== "undefined") { %>
-              <div class="alert alert-danger" style="margin-bottom: 10px" style="height:20px" ><%= user.nickname %>님 환영합니다. <a href="/auth/logout"> logout 할래요?</a></div>
-            <% } else { %>
-              <div ><a href="/auth/login"> 로그인하세요 </a></div>
-            <% } %>
-            <nav class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-              <!-- Brand and toggle get grouped for better mobile display -->
-              <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
-                  <span class="sr-only">Toggle navigation</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand text-uppercase" href="#">Curve App <span class="label label-success text-capitalize">Free</span></a>
-              </div>
+          <style>
+          a:link  { text-decoration: none; color: #5E5E5E}
+          a:visited {  text-decoration: none; color: #5E5E5E}
+          a:active {  text-decoration: none; color: #5E5E5E}
+          a:hover { text-decoration: underline; color:#F36798}
+          body {
+              margin: 0;
+              background-color: #191919;
+              min-width: 600px;
+          }
 
-              <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="navigation">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Features</a></li>
-                        <li><button type="button" class="btn btn-success navbar-btn btn-circle">Sign in</button></li>
-                    </ul>
-                </div>
-              </div>
+          nav {
+              background: rgba(0, 0, 0, 0.4);
+              height: 80px;
+              width: 100%;
+              display: flex;
+              position: fixed;
+              padding: 0px 50px;
+              z-index: 11;
+          }
+
+          .logo {
+              display: flex;
+              align-content: center;
+              align-items: center;
+              font-weight: 700;
+              font-size: 23px;
+              height: 100%;
+              box-sizing: border-box;
+              padding: 10px 10px;
+              color: white;
+          }
+
+          ul {
+              list-style: none;
+              display: flex;
+              margin: 0;
+          }
+
+          li {
+              display: flex;
+              height: 100%;
+              width: 100px;
+              font-size: 18px;
+              justify-content: center;
+              align-items: center;
+              color: rgba(255,255,255,0.7);
+          }
+
+          li.active {
+              color: rgba(255,255,255,1.0);
+              font-weight: 600;
+          }
+
+          li:hover {
+              font-weight: 600;
+              color: rgba(255,255,255,1.0);
+              cursor: pointer;
+          }
+
+          .title {
+              font-size: 3.8vw;
+              font-weight: 600;
+              margin-bottom: 35px;
+          }
+
+          .year {
+              font-size: 1.8vw;
+              margin-right: 30px;
+              color: rgba(255,255,255,0.7);
+              font-weight: bold;
+          }
+
+          .running {
+              color: rgba(255,255,255,0.7);
+              font-size: 1.8vw;
+
+          }
+
+          .info {
+              margin-bottom: 20px;
+          }
+
+          .summary {
+              font-size: 1.3vw;
+              color: white;
+              font-weight: 600;
+          }
+
+          .description {
+              position: absolute;
+              left: 0;
+              top: 0.9vw;
+              color: white;
+              padding: 18vw 0 0 14vw;
+              z-index: 2;
+              width: 55vw;
+          }
+          .main-bg {
+              width: 100%;
+              position: relative;
+          }
+
+          .main-bg img {
+              width: 100%;
+              object-fit: fill;
+              background-color: black;
+          }
+
+          svg:hover {
+              color: white !important;
+          }
+
+
+          @media all and (max-width: 600px) {
+              .row-item {
+                  width: 33.3333%;
+              }
+          }
+          @media all and (min-width: 600px) and (max-width: 1200px) {
+              .row-item {
+                  width: 25%;
+              }
+          }
+          @media all and (min-width: 1200px) and (max-width: 1600px) {
+              .row-item {
+                  width: 20%;
+               }
+          }
+          @media all and (min-width: 1600px) {
+              .row-item {
+                  width: 16.6667%;
+              }
+          }
+          section {
+            background-image: url("https://falange.net/wp-content/uploads/2017/06/Vingadores-Avengers.jpg");
+            background-size: cover;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            opacity: 0.9;
+            z-index: -1;
+          }
+          </style>
+          <header>
+            <nav>
+                <div class='logo'><span>MOVIE HI - !</span>
+                    <ul>
+                      <li class='active' style="margin-left:20%"><a href="/" style="text-decoration:none; color: white;">홈</a></li>
+                      <li>카테고리</li>
+                      <li>평가하기</li>
+                      <% if( typeof user !== "undefined") { %>
+                      <li style="margin-bottom: 10px" ><%= user.nickname %><a href="/auth/logout"> logout?</a></li>
+                      <% } else { %>
+                      <li><a href="/auth/login" style="text-decoration:none; color: white;">로그인</a></li>
+                      <% } %>
+                    </ul
+              ></div>
             </nav>
           </header>
           <section>
             <%-body -%>
           </section>
-          <footer class="footer text-center">
-            <div class="container">
-                <small>© Copyright 2015. Crafted with love by <a href="https://www.twitter.com/maridlcrmn">@maridlcrmn</a></small>
-            </div>
+          <footer>
         </footer>
         </body>
       </html>

@@ -5,42 +5,43 @@ module.exports = function(passport){
       auth : {
         user: 'gunooknam@gmail.com',
         pass: 'akdakdakd1!',
-
       }
    });
 
   var bkfd2Password = require("pbkdf2-password");
   var hasher = bkfd2Password();
   var conn = require('../config/database')();
-  var route=require('express').Router();
-  route.get(
+  var router=require('express').Router();
+
+  router.get(
     '/google',
     passport.authenticate('google',
      {scope: ['email','openid']})
    );
   // 페이스 북과 같은 타사인증은 라우트가 두개다.
-  route.get(
+  router.get(
     '/google/redirect',
      passport.authenticate(
       'google',
       {
         successRedirect: '/welcome',
-        failureRedirect: '/auth/login'
+        failureRedirect: '/auth/login',
+        failureFlash: false
       }
     )
   );
-  route.post(
+  router.post(
     '/login',
     passport.authenticate(
-      'local', // 이 로컬이라는 인자에 의해서 passport의 strategy 중에 local이 실행된다.
-      {
-        successRedirect: '/welcome', //이 코드가  로그인에 성공하면 /welcome 페이지로 리 다이렉션 시킨다.
-        failureRedirect: '/auth/login', //로그인에 실패했다. 그러면 후아유, 그래서 사용자가 다시 로그인 하도록 리 다이렉트
-        failureFlash: true //로그인 페이지로가면 사용자는 왜 다시 로그인 페이지로 온지 모른다.
-      } // 사용자에게 인증에 실패했다는 정보를 줄 수있는 이 Flash를 사용하면 // 사용자에게 딱 한번만 메세지를 보여줄 수 있다.
+      'local',
+       {
+        successRedirect: '/welcome',
+        failureRedirect: '/auth/login',
+        failureFlash: false
+       }
     )
   );
-  route.get('/logout', function(req,res){
+  router.get('/logout', function(req,res){
     console.log("dd");
     req.logout();
     req.session.save(function(){
@@ -49,25 +50,21 @@ module.exports = function(passport){
   });
 
   // 이제 포스트 부분을 구현한다.
-  route.get('/login',function(req, res){
-    if(req.user)
-    res.redirect("../welcome");
-    var sql = 'SELECT id, title FROM user';
-      conn.query(sql,function(err, topics, fields){
-        var string = req.flash('loginMessage');
-        // flash는 변수로 감싸서 집어넣어야 한다..... 안그러면 전달이 안된다.
-        res.render('auth/login', { message : string } );
-      });
+  router.get('/login',function(req, res){
+    if(req.user){
+    res.render("welcome",{ user:req.user});
+    }
+    res.render('auth/login', { message : req.flash('loginMessage') } );
   });
 
-  route.get('/register', function(req, res){
+  router.get('/register', function(req, res){
       var sql = 'SELECT * FROM user';
       conn.query(sql,function(err, rows, fields){
         res.render('auth/register', {rows: rows});
       });
   });
 
-  route.post('/register', function(req,res){
+  router.post('/register', function(req,res){
      hasher({password:req.body.password}, function(err, pass, salt, hash){
       var user = {
         authId: 'local:'+req.body.email,
@@ -95,14 +92,14 @@ module.exports = function(passport){
      });
   });
 
-  route.get('/passwdfind', function(req,res){
+  router.get('/passwdfind', function(req,res){
     var sql = 'SELECT * FROM user';
     conn.query(sql,function(err, rows, fields){
       res.render('auth/passwdfind', {rows: rows});
     });
   });
 
-  route.post('/passwdfind', function(req,res){
+  router.post('/passwdfind', function(req,res){
     console.log(req.body.data);
     console.log(req.body.mail+":에게 메일전송하려고 함");
     var output = `
@@ -123,11 +120,11 @@ module.exports = function(passport){
     });
   });
 
-  route.get('/newpasswd', function(req,res){
+  router.get('/newpasswd', function(req,res){
     res.render('auth/newpasswd',{ mail: req.query.email });
   });
 
-  route.post('/newpasswd', function(req,res){
+  router.post('/newpasswd', function(req,res){
       hasher({password:req.body.password}, function(err, pass, salt, hash){
         var set = [
            hash,
@@ -139,11 +136,10 @@ module.exports = function(passport){
       conn.query(sql, set, function(err,rows){
         if(err) console.error(err);
           console.log("update에서 1개 글 조회 결과 확인 : ",rows);
-          console.log("비밀번호 변경 후");
           res.redirect('/auth/login');
       });
     });
  });
 
-  return route;
+  return router;
 }
