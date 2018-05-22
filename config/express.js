@@ -11,6 +11,8 @@ module.exports = function(){
   var flash = require('connect-flash');
   var logger = require('morgan');
   var engine = require('ejs-locals');
+  const pw = require('./pw');
+
   app.engine('ejs',engine);
   app.set('views', path.join('views'));
   app.set('view engine', 'ejs');
@@ -28,7 +30,7 @@ module.exports = function(){
       host:'localhost',
       port:3306,
       user:'root',
-      password:'123456',
+      password: pw,
       database:'movie_hi'
       })
   }));
