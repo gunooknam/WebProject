@@ -47,7 +47,6 @@ const Row = ({ data }) => {
                 <div>
                     <div>
                         {data.map((item, index) => {
-                            console.log(item.small_backdrop_path);
                             return item.small_backdrop_path == 'https://image.tmdb.org/t/p/originalnull' ?
                                 null
                                 : <RowItem key={data[index].id} data={data[index]}/>;
