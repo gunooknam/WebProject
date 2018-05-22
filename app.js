@@ -1,6 +1,5 @@
 var createError = require('http-errors');
 // var ejs = require("ejs").__express;
-//var express = require('express');
 var app = require('./config/express')();
 var passport = require('./config/passport')(app);
 // view engine setup
