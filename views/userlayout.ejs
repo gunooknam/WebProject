@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+    <html style="display:white">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/3.4.0/es5-shim.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.0.min.js" ></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width", initial-scale="1">
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
+<style class="cp-pen-styles">@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+body {
+  background: #eee;
+  font-family: "Open Sans", Helvetica, sans-serif;
+}
+.setting {
+  background: #fff;
+  margin: 0 auto 3px;
+  padding: 12px;
+  width: 300px;
+}
+.setting h2 {
+  color: #999;
+  font-size: 14px;
+  font-weight: 400;
+  margin: 0 0 6px;
+  line-height: 24px;
+}
+.setting a[data-action] {
+  cursor: pointer;
+  color: #555;
+  font-size: 14px;
+  line-height: 24px;
+  transition: color 0.2s;
+}
+.setting a[data-action] i {
+  width: 1.25em;
+  text-align: center;
+}
+.setting a[data-action]:hover {
+  color: #f80;
+}
+.setting a[data-action].disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+.setting a[data-action].disabled:hover {
+  color: #555;
+}
+.image_picker .settings_wrap {
+  overflow: hidden;
+  position: relative;
+}
+.image_picker .settings_wrap .drop_target,
+.image_picker .settings_wrap .settings_actions {
+  float: left;
+}
+.image_picker .settings_wrap .drop_target {
+  margin-right: 18px;
+}
+.image_picker .settings_wrap .settings_actions {
+  margin-top: 12px;
+}
+.settings_actions.vertical a {
+  display: block;
+}
+.drop_target {
+  position: relative;
+  cursor: pointer;
+  background: #e6e6e6;
+  border-top: 1px solid #cccccc;
+  border-radius: 4px;
+  width: 72px;
+  height: 72px;
+  padding: 4px 6px 6px;
+  transition: all 0.2s;
+}
+.drop_target input[type="file"] {
+  visibility: hidden;
+}
+.drop_target:before {
+  content: '\f0ee';
+  font-family: FontAwesome;
+  position: absolute;
+  display: block;
+  width: 60px;
+  line-height: 60px;
+  text-align: center;
+  font-size: 32px;
+  color: rgba(0, 0, 0, 0.3);
+  transition: color 0.2s;
+}
+.drop_target:hover,
+.drop_target.dropping {
+  background: #f80;
+  border-top-color: #cc6d00;
+}
+.drop_target:hover:before,
+.drop_target.dropping:before {
+  color: rgba(0, 0, 0, 0.6);
+}
+.drop_target .image_preview {
+  width: 100%;
+  height: 100%;
+  background: no-repeat center;
+  background-size: contain;
+  position: relative;
+  z-index: 2;
+}
+.image_details {
+  width: 192px;
+  padding: 4px;
+  background: #e6e6e6;
+  border-radius: 4px;
+  position: absolute;
+  top: 0;
+  left: 84px;
+  z-index: 5;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s;
+}
+.dropped ~ .image_details {
+  opacity: 1;
+  pointer-events: all;
+}
+.image_details:before {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-right-color: #e6e6e6;
+  position: absolute;
+  left: -12px;
+  top: 10px;
+}
+.image_details .input_line {
+  display: block;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+.image_details .input_line:last-of-type {
+  margin-bottom: 0;
+}
+.image_details .input_line span,
+.image_details .input_line input {
+  float: left;
+  line-height: 24px;
+}
+.image_details .input_line span {
+  font-size: 12px;
+  color: #666;
+  width: 20%;
+}
+.image_details .input_line input[type="text"] {
+  width: 100%;
+  color: #444444;
+  appearance: none;
+  border: 1px solid #e6e6e6;
+  border-radius: 3px;
+  background: #fff;
+  height: 24px;
+  line-height: 18px;
+  padding: 3px 5px;
+  font-size: 14px;
+  transition: border 0.2s;
+}
+.image_details .input_line input[type="text"]:hover,
+.image_details .input_line input[type="text"]:focus {
+  outline: 0;
+  border: 1px solid #f80;
+}
+.image_details .input_line input[type="text"]::-webkit-input-placeholder {
+  font-size: 14px;
+  color: #999;
+}
+.image_details a.confirm {
+  position: absolute;
+  right: -12px;
+  top: 50%;
+  margin-top: -12px;
+  display: block;
+  width: 21px;
+  height: 21px;
+  border-radius: 100%;
+  background: #eee;
+  line-height: 23px;
+  text-align: center;
+  font-size: 16px;
+}
+body {
+  overflow: hidden;
+}
+.setting:last-of-type {
+  height: 1500px;
+}
+
+a:link  { text-decoration: none; color: #5E5E5E}
+a:visited {  text-decoration: none; color: #5E5E5E}
+a:active {  text-decoration: none; color: #5E5E5E}
+a:hover { text-decoration: underline; color:#F36798}
+body {
+    margin: 0;
+    background-color:  #708090;
+    min-width: 600px;
+}
+
+nav {
+    background: rgba(0, 0, 0, 0.4);
+    height: 80px;
+    width: 100%;
+    display: flex;
+    position: fixed;
+    padding: 0px 50px;
+    z-index: 11;
+}
+
+.logo {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 23px;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 10px 10px;
+    color: white;
+}
+
+
+li.active {
+    color: rgba(255,255,255,1.0);
+    font-weight: 600;
+}
+
+li:hover {
+    font-weight: 600;
+    color: rgba(255,255,255,1.0);
+    cursor: pointer;
+}
+
+.title {
+    font-size: 3.8vw;
+    font-weight: 600;
+    margin-bottom: 35px;
+}
+
+.year {
+    font-size: 1.8vw;
+    margin-right: 30px;
+    color: rgba(255,255,255,0.7);
+    font-weight: bold;
+}
+
+.running {
+    color: rgba(255,255,255,0.7);
+    font-size: 1.8vw;
+
+}
+
+.info {
+    margin-bottom: 20px;
+}
+
+.summary {
+    font-size: 1.3vw;
+    color: white;
+    font-weight: 600;
+}
+
+.description {
+    position: absolute;
+    left: 0;
+    top: 0.9vw;
+    color: white;
+    padding: 18vw 0 0 14vw;
+    z-index: 2;
+    width: 55vw;
+}
+.main-bg {
+    width: 100%;
+    position: relative;
+}
+
+.main-bg img {
+    width: 100%;
+    object-fit: fill;
+    background-color: black;
+}
+
+svg:hover {
+    color: white !important;
+}
+
+html {
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  overflow:scroll;
+}
+label.error {
+    color: red;
+    width: 100%;
+    left: 0px;
+    text-align: center;
+}
+</style>
+<script>
+      $(function(){
+              $("#newpasswd").validate({
+                rules: {
+                    password: {
+                           required: true,
+                           minlength : 6
+                     },
+                    newpassword: {
+                           required : true,
+                           minlength : 6,
+                           equalTo : password
+                      }
+                },
+                messages : {
+                        password: {
+                             required : "필수로 입력하세요",
+                             minlength : "최소 {0}글자 이상이어야 합니다"
+                             },
+                        newpassword: {
+                             required : "필수로 입력하세요",
+                             minlength : "최소 {0}글자 이상이어야 합니다",
+                             equalTo : "비밀번호가 일치하지 않습니다."
+                            }
+                }
+            });
+      });
+
+         $(document).ready(function()
+      {
+        var navItems = $('.admin-menu li > a');
+        var navListItems = $('.admin-menu li');
+        var allWells = $('.admin-content');
+        var allWellsExceptFirst = $('.admin-content:not(:first)');
+        allWellsExceptFirst.hide();
+        navItems.click(function(e)
+        {
+            e.preventDefault();
+            navListItems.removeClass('active');
+            $(this).closest('li').addClass('active');
+            allWells.hide();
+            var target = $(this).attr('data-target-id');
+            $('#' + target).show();
+        });
+        });
+        function submitbutton(){
+          if($('#userfile').val()==""){
+           alert('변경하려면 이미지를 선택해주세요');
+           return false;
+          }
+          alert('제출되었습니다');
+          return true
+        }
+
+
+</script>
+  <nav>
+      <div class='logo'><span>MOVIE HI - !</span>
+          <ul style="list-style: none; display: flex; margin:10; ">
+            <li class='active' style="margin-left:20% ; width: 100px;font-size: 18px;justify-content: center; align-items: center;"><a href="/" style="text-decoration:none; color: white;">홈</a></li>
+            <li style="width: 150px;font-size: 18px;justify-content: center;align-items: center;">카테고리</li>
+            <li style="width: 150px;font-size: 18px;justify-content: center;align-items: center;">평가하기</li>
+            <% if( typeof user !== "undefined") { %>
+            <li style="margin-bottom: 10px; width: 150px;font-size: 18px;justify-content: center;align-items: center;" ><%= user.nickname %><a href="/auth/logout"> logout?</a></li>
+            <% } else { %>
+            <li style="width: 150px;font-size: 18px;justify-content: center; align-items: center;"><a href="/auth/login" style="text-decoration:none; color: white; width: 100px;font-size: 18px;justify-content: center;align-items: center;">로그인</a></li>
+            <% } %>
+          </ul>
+        </div>
+  </nav>
+</div>
+<div class="container" >
+        <div class="row" style="margin-top:10%">
+            <div class="col-md-2"  style="margin-top:5%">
+                <ul class="nav nav-pills nav-stacked admin-menu" style="margin-top:10%" >
+                    <li class="active"><a href="" data-target-id="profile"><i class="glyphicon glyphicon-user"></i> 프로필 </a></li>
+                    <li><a href="" data-target-id="change-password"><i class="glyphicon glyphicon-lock"></i> 비밀번호 변경하기 </a></li>
+                    <li><a href="" data-target-id="settings"><i class="glyphicon glyphicon-usd"></i> 이용권 결제</a></li>
+                    <li><a href="" data-target-id="settings"><i class="glyphicon glyphicon-usd"></i> 현금 결제</a></li>
+                    <li><a href="" data-target-id="settings"><i class="glyphicon glyphicon-certificate"></i> 이용권 현황 및 보유 금액</a></li>
+                    <li><a href="" data-target-id="logout"><i class="glyphicon glyphicon-log-out"></i> 회원탈퇴 </a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-8  admin-content" id="profile">
+                <h2 style="margin-left:15px ; color :white; font-weight: bolder;"} >프로필</h2>
+                <div class="settings_wrap" >
+                  <label class="drop_target" style="margin-left:15px; height: 100px; width: 100px;">
+                      <div class="image_preview"> <img src="<%= user.image %>" style='height: 100%; width: 100%; object-fit: contain'/></div>
+                    </form>
+                  </label>
+                </div>
+                <div class="settings_actions vertical" style="margin-left:15px ;" >
+                      <form action="/users/image" method="post" onsubmit="return submitbutton()" enctype="multipart/form-data">
+                        <input type="file" name="userfile" id="userfile" accept=".jpg,.jpeg,.png,.gif,.bmp" >
+                        <hr>
+                        <button class="btn btn-success" type="submit" >프로필 이미지 변경</button>
+                      </form>
+                </div>
+
+              <div class="panel panel-info" style="margin: 1em;">
+                  <div class="panel-heading">
+                      <h3 class="panel-title">이름</h3>
+                  </div>
+                  <div class="panel-body">
+                      <%= user.name %>
+                  </div>
+              </div>
+                <div class="panel panel-info" style="margin: 1em;">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">닉네임</h3>
+                    </div>
+                    <div class="panel-body">
+                        <%= user.nickname %>
+                    </div>
+                </div>
+                <div class="panel panel-info" style="margin: 1em;">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">이메일</h3>
+                    </div>
+                    <div class="panel-body">
+                        <%= user.email %>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-9  admin-content" id="settings">
+                <div class="panel panel-info" style="margin: 1em;">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Notification</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="label label-success">allowed</div>
+                    </div>
+                </div>
+                <div class="panel panel-info" style="margin: 1em;">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Newsletter</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="badge">Monthly</div>
+                    </div>
+                </div>
+                <div class="panel panel-info" style="margin: 1em;">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Admin</h3>
+
+                    </div>
+                    <div class="panel-body">
+                         <div class="label label-success">yes</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8  admin-content" id="change-password">
+                <form id="newpasswd" name="newpasswd" action="/users/pwdreset" method="post" onsubmit="return checknumber();">
+                  <h2 style="margin-left:15px  ; color :white; font-weight: bolder;">비밀번호 변경</h2>
+
+                      <div class="panel panel-info" style="margin: 1em;">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><label for="new_password" class="control-label panel-title">가입한 메일로 인증번호 전송</label></h3>
+                        </div>
+                      <div class="panel-body">
+                          <div class="form-group">
+                              <div class="col-sm-10">
+                                <span>
+                                  <input id="authnum" type="password" class="form-control" name="authnum"  placeholder="인증번호를 입력하세요" required/ >
+                                  <hr>
+                                  </span>
+                                  <input type="button" class="btn btn-success" onclick="sendmail()" value="전송하기">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-info" style="margin: 1em;">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><label for="new_password" class="control-label panel-title">새 비밀번호</label></h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <input id="password" type="password" class="form-control" name="password"  placeholder="6자리이상" required/ >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-info" style="margin: 1em;">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><label for="confirm_password" class="control-label panel-title">비밀번호 확인</label></h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <input id="newpassword" type="password" class="form-control" name="newpassword" placeholder="6자리이상" required/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-info border" style="margin: 1em;">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <div class="pull-left  " style="margin-left:14px">
+                                    <input type="submit" class="form-control btn btn-primary" name="submit" id="submit" value="비밀번호 변경하기">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <form id="remove" action="/users/removeuser" method="POST" onsubmit="return confirm('정말로 삭제하시겠습니까?')">
+            <div class="col-md-8  admin-content" id="logout">
+              <h2 style="margin-left:15px  ; color :white; font-weight: bolder;">회원탈퇴</h2>
+                <div class="panel panel-info" style="margin: 1em;">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">탈퇴 확인</h3>
+                    </div>
+                    <div class="panel-body">
+                        탈퇴 이후에는 잔여 금액에 대한 복구 불가능합니다. 정말로 탈퇴하시겠습니까? <br><br>
+                        <input id="login-remember" type="checkbox" name="remember" value="1" required/> 네. 회원 탈퇴하겠습니다.
+                        <hr><button class="btn btn-success" type="submit" style="margin-left:35%">확인</button>
+                            <button class="btn btn-success"style="margin-left:5%"><a href data-target-id="profile" style="color:white">취소</button>
+                    </div>
+                </div>
+              </div>
+            </form>
+        </div>
+      </div>
+      <script>
+      var num;
+      function sendmail(){
+        alert("인증번호가 전송됩니다.");
+        var number=generateRandom(100000,999999);
+        num=number;
+        var val = <%-JSON.stringify(user) %>;
+        $.ajax({
+           type: 'POST',
+           data: {'data':number ,'email':val.email },//오브젝트 형태로 넘김
+           url: 'http://127.0.0.1:3000/users/authnum',
+           success: function(data) {
+           },
+           error : function(error){
+           }
+        });
+      }
+
+      function checknumber(){
+          if($('#authnum').val()==num){
+            alert("비밀번호가 변경됩니다.");
+            return true;
+          }
+          else{
+            alert("인증번호가 틀렸습니다.");
+            return false
+          }
+      }
+
+      var generateRandom = function (min, max) {
+      var ranNum = Math.floor(Math.random()*(max-min+1)) + min;
+      return ranNum;
+      }
+      </script>
+</html>
