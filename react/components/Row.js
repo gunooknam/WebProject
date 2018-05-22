@@ -22,7 +22,6 @@ const leftAngleStyle = {
 
 const slideRight = (e) => {
     const children = e.currentTarget.previousSibling.firstChild;
-    console.log(children.firstChild.style.width);
     const nextPosition = (parseInt(children.style.left || 0) - 100);
     const boundPosition = (children.childNodes.length - 6) * -16.66667;
 
@@ -48,7 +47,10 @@ const Row = ({ data }) => {
                 <div>
                     <div>
                         {data.map((item, index) => {
-                            return <RowItem key={data[index].id} data={data[index]}/>;
+                            console.log(item.small_backdrop_path);
+                            return item.small_backdrop_path == 'https://image.tmdb.org/t/p/originalnull' ?
+                                null
+                                : <RowItem key={data[index].id} data={data[index]}/>;
                         })}
                     </div>
                 </div>
