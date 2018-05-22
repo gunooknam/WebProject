@@ -3,3 +3,5 @@ server.js
 public/bundle.js
 bundle.js
 config/pw.example.js
+public/main_bundle.js
+public/category_bundle.js
