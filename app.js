@@ -6,7 +6,9 @@ var passport = require('./config/passport')(app);
 var login = require('./routes/login')(passport);
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var apiRouter = require('./routes/api');
 
+app.use('/api', apiRouter);
 app.use('/auth', login);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
