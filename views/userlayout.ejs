@@ -197,20 +197,31 @@ body {
 }
 body {
   overflow: hidden;
+  margin: 0;
+  background-color:#A9A9A9;
+  min-width: 600px;
+  opacity: 0.8;
 }
 .setting:last-of-type {
   height: 1500px;
 }
 
+.panel-info>.panel-heading {
+    color: gray;
+    background-color: white;
+    border-color: gray;
+}
+
+
+label{
+  font-weight: 200;
+}
+
+
 a:link  { text-decoration: none; color: #5E5E5E}
 a:visited {  text-decoration: none; color: #5E5E5E}
 a:active {  text-decoration: none; color: #5E5E5E}
 a:hover { text-decoration: underline; color:#F36798}
-body {
-    margin: 0;
-    background-color:  #708090;
-    min-width: 600px;
-}
 
 nav {
     background: rgba(0, 0, 0, 0.4);
@@ -302,7 +313,7 @@ svg:hover {
 html {
   background-size: cover;
   height: 100%;
-  width: 100%;
+  width: 90%;
   position: absolute;
   overflow:scroll;
 }
@@ -385,9 +396,9 @@ label.error {
   </nav>
 </div>
 <div class="container" >
-        <div class="row" style="margin-top:10%">
-            <div class="col-md-2"  style="margin-top:5%">
-                <ul class="nav nav-pills nav-stacked admin-menu" style="margin-top:10%" >
+        <div class="row" style="margin-top:10% ; margin-right:10">
+            <div class="col-md-2" style="margin-top:5%">
+                <ul class="nav nav-pills nav-stacked admin-menu" style="margin-top:10% ;" >
                     <li class="active"><a href="" data-target-id="profile"><i class="glyphicon glyphicon-user"></i> 프로필 </a></li>
                     <li><a href="" data-target-id="change-password"><i class="glyphicon glyphicon-lock"></i> 비밀번호 변경하기 </a></li>
                     <li><a href="" data-target-id="settings"><i class="glyphicon glyphicon-usd"></i> 이용권 결제</a></li>
@@ -397,20 +408,22 @@ label.error {
                 </ul>
             </div>
 
-            <div class="col-md-8  admin-content" id="profile">
-                <h2 style="margin-left:15px ; color :white; font-weight: bolder;"} >프로필</h2>
-                <div class="settings_wrap" >
-                  <label class="drop_target" style="margin-left:15px; height: 100px; width: 100px;">
-                      <div class="image_preview"> <img src="<%= user.image %>" style='height: 100%; width: 100%; object-fit: contain'/></div>
-                    </form>
-                  </label>
-                </div>
-                <div class="settings_actions vertical" style="margin-left:15px ;" >
-                      <form action="/users/image" method="post" onsubmit="return submitbutton()" enctype="multipart/form-data">
-                        <input type="file" name="userfile" id="userfile" accept=".jpg,.jpeg,.png,.gif,.bmp" >
-                        <hr>
-                        <button class="btn btn-success" type="submit" >프로필 이미지 변경</button>
-                      </form>
+            <div class="col-md-8  admin-content" id="profile" style="margin-top:5% ;">
+              <fieldset style="margin-left:11%">
+                <div class="panel panel-info" style="margin: 1em;">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">프로필 이미지</h3>
+                    </div>
+                    <div class="panel-body">
+                      <img src="<%= user.image %>" class="img-thumbnail" style='height: 200px; width: 200px; object-fit: contain; margin-left:15px'/>
+                      <div  style="margin-left:15px ;" >
+                            <form action="/users/image" method="post" onsubmit="return submitbutton()" enctype="multipart/form-data">
+                              <input type="file" name="userfile" id="userfile" accept=".jpg,.jpeg,.png,.gif,.bmp" >
+                              <hr>
+                              <button class="btn btn-success" type="submit" >프로필 이미지 변경</button>
+                            </form>
+                      </div>
+                    </div>
                 </div>
 
               <div class="panel panel-info" style="margin: 1em;">
@@ -437,6 +450,7 @@ label.error {
                         <%= user.email %>
                     </div>
                 </div>
+              </fieldset>
             </div>
 
             <div class="col-md-9  admin-content" id="settings">
@@ -466,10 +480,9 @@ label.error {
                     </div>
                 </div>
             </div>
-            <div class="col-md-8  admin-content" id="change-password">
+            <div class="col-md-9  admin-content" id="change-password" style="margin-top:6% ;">
+              <fieldset style="margin-left:10%">
                 <form id="newpasswd" name="newpasswd" action="/users/pwdreset" method="post" onsubmit="return checknumber();">
-                  <h2 style="margin-left:15px  ; color :white; font-weight: bolder;">비밀번호 변경</h2>
-
                       <div class="panel panel-info" style="margin: 1em;">
                         <div class="panel-heading">
                             <h3 class="panel-title"><label for="new_password" class="control-label panel-title">가입한 메일로 인증번호 전송</label></h3>
@@ -523,22 +536,24 @@ label.error {
                         </div>
                     </div>
                 </form>
+              </fieldset>
             </div>
 
             <form id="remove" action="/users/removeuser" method="POST" onsubmit="return confirm('정말로 삭제하시겠습니까?')">
-            <div class="col-md-8  admin-content" id="logout">
-              <h2 style="margin-left:15px  ; color :white; font-weight: bolder;">회원탈퇴</h2>
-                <div class="panel panel-info" style="margin: 1em;">
+            <div class="col-md-8  admin-content" id="logout" style="margin-top:6% ;padding-left:20;">
+              <fieldset style="margin-left:12%">
+                <div class="panel panel-info">
                     <div class="panel-heading">
-                        <h3 class="panel-title">탈퇴 확인</h3>
+                        <h3 class="panel-title">회원 탈퇴</h3>
                     </div>
                     <div class="panel-body">
                         탈퇴 이후에는 잔여 금액에 대한 복구 불가능합니다. 정말로 탈퇴하시겠습니까? <br><br>
                         <input id="login-remember" type="checkbox" name="remember" value="1" required/> 네. 회원 탈퇴하겠습니다.
-                        <hr><button class="btn btn-success" type="submit" style="margin-left:35%">확인</button>
-                            <button class="btn btn-success"style="margin-left:5%"><a href data-target-id="profile" style="color:white">취소</button>
+                        <hr><button class="btn btn-success" type="submit" style="margin-left:40%">확인</button>
+                            <button class="btn btn-success" ><a href data-target-id="profile" style="color:white">취소</button>
                     </div>
                 </div>
+              </fieldset>
               </div>
             </form>
         </div>
