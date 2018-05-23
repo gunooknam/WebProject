@@ -2,6 +2,6 @@ node_modules/
 server.js
 public/bundle.js
 bundle.js
-config/pw.example.js
+config/pw.js
 public/main_bundle.js
 public/category_bundle.js
