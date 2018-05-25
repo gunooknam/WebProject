@@ -41,7 +41,8 @@ router.get('/', function (req, res, next) {
         .then(r => {
             data.sliderData = r;
             res.send(getHtml(<MainApp data={data} />, 'main_bundle'));
-        });
+        })
+        .catch(e => res.status(500).send(e.sqlMessage));
 });
 
 router.get('/category', function (req, res) {
@@ -55,7 +56,8 @@ router.get('/category', function (req, res) {
         .then(r => {
             data.movieList = r;
             res.send(getHtml(<CategoryApp data={data}/>, 'category_bundle'));
-        });
+        })
+        .catch(e => res.status(500).send(e.sqlMessage));
 });
 
 router.get('/welcome', function (req, res) {
