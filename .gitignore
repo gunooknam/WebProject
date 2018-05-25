@@ -6,3 +6,5 @@ config/pw.js
 public/main_bundle.js
 public/category_bundle.js
 public/movieRegister_bundle.js
+public/*hot-update*
+public/images/*
