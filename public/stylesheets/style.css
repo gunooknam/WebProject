@@ -131,3 +131,17 @@ li:hover {
     margin-bottom: 35px;
 	border-color : #fff;
 }
+
+button {
+    background:none; 
+    color: rgba(255,255,255,0.7);
+    float:left; 
+    border:none; 
+    outline:none;
+}
+
+button:hover {
+    font-weight: 600;
+    color: rgba(255,255,255,1.0);
+    cursor: pointer;
+}

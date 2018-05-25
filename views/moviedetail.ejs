@@ -17,7 +17,7 @@
 		<nav>
             <div class='logo'>MOVIE HI - !</div>
             <ul>
-                <li class='active'>홈</li>
+                <li class='active'><a href="/" style="text-decoration:none; color: white;">홈</a></li>
                 <li>카테고리</li>
                 <li>평가하기</li>
                 <% if( typeof user !== "undefined") { %>
@@ -37,20 +37,29 @@
 				<p>감독id:<%= rows[0].director_id %> | <%= rows[0].runtime %>분 | <%= rows[0].price %>원</p>
 				<hr color="gray" size="1">
 				<h4><%= rows[0].description %></h4>
+                
 				
-				<div style="width:70%; float:left;">
-					<div style="width:15%; float:left;">
-						<a href="보고싶어요링크"><img src ="https://cdn3.iconfinder.com/data/icons/facebook-ui-flat/48/Facebook_UI-35-128.png" width=120% align:"middle"></a>
-					</div>
-					<div style="width:35%; float:left;">
-						<p>보고싶어요</p>
-					</div>
-					<div style="width:15%; float:left;">
-						<a href="관심없어요링크"><img src ="https://cdn3.iconfinder.com/data/icons/facebook-ui-flat/48/Facebook_UI-38-128.png" width=120% align:"middle"></a>
-					</div>
-					<div style="width:35%; float:left;">
-						<p>관심없어요</p>
-					</div>
+				<div style="width:80%; float:left;">
+                    <div style="width:50%; float:left;">
+                        <button type="submit" onclick="alert('wish list에 추가')">
+                        <div style="width:40%; float:left;">
+                            <img src ="https://cdn3.iconfinder.com/data/icons/facebook-ui-flat/48/Facebook_UI-35-128.png" width=100% align:"middle">
+                        </div>
+                        <div style="width:60%; float:left;">
+                            <h3>보고싶어요</h3>
+                        </div>
+                        </button>
+                    </div>
+                    <div style="width:50%; float:left;">
+                        <button type="submit" onclick="alert('wish list에서 삭제')">
+                            <div style="width:40%; float:left;">
+                                <img src ="https://cdn3.iconfinder.com/data/icons/facebook-ui-flat/48/Facebook_UI-38-128.png" width=100% align:"middle">
+                            </div>
+                            <div style="width:60%; float:left;">
+                                <h3>관심없어요</h3>
+                            </div>
+                        </button>
+                    </div>
 				</div>
 			</div>
 			<div class="poster">
@@ -58,7 +67,7 @@
 					<img src="<%= rows[0].backdrop_path %>" width=800px> </img>
 				</div>
 				<div style="position:absolute; top:40%; left:58%; z-index:2;">
-					 <a href="동영상링크"><img src="https://s3-us-west-2.amazonaws.com/misionadmision-informacion/miscelanea/clases-grabadas/play-icon.png" width=150px>"/></a>
+					 <a href="동영상링크"><img src="https://s3-us-west-2.amazonaws.com/misionadmision-informacion/miscelanea/clases-grabadas/play-icon.png" width=150px></a>
 				</div>
 			</div>
 		</section>		
