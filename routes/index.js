@@ -65,4 +65,7 @@ router.get('/welcome', function (req, res) {
     });
 });
 
+router._getHtml = getHtml;
+router._query = query;
+
 module.exports = router;
