@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Header from '../components/Header';
-import MainBackground from '../components/MainBackground';
-import Row from '../components/Row';
+import Header from '../../components/Header';
+import MainBackground from '../../components/MainBackground';
+import Row from '../../components/Row';
 
-const App = (props) => {
+const MainApp = (props) => {
   return (
     <div>
-      <Header />
+      <Header activeIndex={0} user={props.data.user} />
       <MainBackground data={props.data.mainData}/>
       <Row data={props.data.sliderData}/>
       <Row data={props.data.sliderData}/>
@@ -22,4 +22,4 @@ const App = (props) => {
   );
 }
 
-export default App;
+export default MainApp;

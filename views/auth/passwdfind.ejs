@@ -1,23 +1,16 @@
+
     <% layout('../layout') -%>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <html style="display:white">
     <title>비밀번호 찾기</title>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.0.min.js" ></script>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.20.5/sweetalert2.all.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/3.4.0/es5-shim.min.js"></script>
-    <meta name="viewport" content="width=device-width", initial-scale="1">
-  </head>
-  <body>
     <div class="container">
-    <div class="col-md-3 col-md-offset-4 col-sm-8 col-sm-offset-2" style="margin-top: 25%">
-   <h4 style="border-bottom: 1px solid #c5c5c5;">
+    <div class="col-md-3 col-md-offset-4 col-sm-8 col-sm-offset-2" style="margin-top: 25%; margin-bottom: 30%" >
+   <h4 style="border-bottom: 1px solid #c5c5c5; color: white">
     <i class="glyphicon glyphicon-search">
     </i>
     비밀번호 찾기
   </h4>
     <form accept-charset="UTF-8" role="form" id="login-recordar" method="get" action='/auth/newpasswd'>
-
         <div class="form-group input-group">
           <span class="input-group-addon">
             <i class="glyphicon glyphicon-envelope"></i>
@@ -27,13 +20,9 @@
         <button type="submit" class="btn btn-primary btn-block" onclick="return ckeckemail()">
           인증번호 발송
         </button>
-        <p class="help-block">
-          <a class="text-muted" href="/auth/login" id="acceso">로그인</a>
-        </p>
     </form>
   </div>
   </div>
-  </body>
   <script>
   function ckeckemail(){
      var val = <%-JSON.stringify(rows) %>;
@@ -43,7 +32,6 @@
                 alert("인증번호를 발송하였습니다.");
                 //swal("Here's the title!", "...and here's the text!");
                 var value=generateRandom(100000,999999);
-                swal(value);
                  $.ajax({
                     type: 'POST',
                     data: {'data':value , mail:id },//오브젝트 형태로 넘김
@@ -57,10 +45,10 @@
                 });
                 var key=prompt("인증번호를 입력해주세요");
                 if(key==value){
-                  swal("인증번호가 일치합니다.");
+                  alert("인증번호가 일치합니다.");
                   return true;
                 }else if(key!=""){
-                  swal("인증번호가 일치하지 않습니다.");
+                  alert("인증번호가 일치하지 않습니다.");
                   return false;
                 }
             }
@@ -68,7 +56,7 @@
         alert("등록된 이메일이 없습니다.");
         return false;
   }
-  var generateRandom = function (min, max) {
+    var generateRandom = function (min, max) {
     var ranNum = Math.floor(Math.random()*(max-min+1)) + min;
     return ranNum;
   }

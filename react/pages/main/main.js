@@ -6,11 +6,4 @@ var props = window.PROPS;
 
 ReactDOM.hydrate((
   <App data={props} />
-), document.getElementById('root'));
-
-if (module.hot) {
-  module.hot.accept('./mainApp.js', () => {
-  })
-}
-
-export default App;
+), document.getElementById('root'))

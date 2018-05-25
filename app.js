@@ -1,22 +1,21 @@
 var createError = require('http-errors');
 // var ejs = require("ejs").__express;
-
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var app = require('./config/express')();
 var passport = require('./config/passport')(app);
 // view engine setup
 var login = require('./routes/login')(passport);
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
+var apiRouter = require('./routes/api');
+
+app.use('/api', apiRouter);
 app.use('/auth', login);
-
-
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
-
 
 // error handler
 app.use(function(err, req, res, next) {

@@ -4,9 +4,12 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const browserConfig = {
     mode: 'development',
-    entry: './react/main/main.js',
+    entry: {
+        main: './react/pages/main/main.js',
+        category: './react/pages/category/category.js',
+    },
     output: {
-        filename: 'bundle.js',
+        filename: '[name]_bundle.js',
         path: path.resolve(__dirname, './public'),
     },
     devServer: {
