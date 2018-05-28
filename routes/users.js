@@ -95,5 +95,47 @@ router.post('/removeuser', function(req, res, next) {
   });
 });
 
+router.get('/pay', function(req, res, next) {
+  res.render('user/pay',{ term : req.query.term, user:req.user});
+});
+
+router.post('/pay', function(req, res, next) {
+
+  var sql = "update user set cash=? where authid=?"
+  conn.query(sql, [ req.body.cash ,req.user] , function(err,rows){
+    if(err) console.error(err);
+      console.log("캐쉬 충전 완료",rows);
+      res.redirect('/users');
+  });
+});
+
+
+
+router.get('/paycash', function(req, res, next) {
+  res.render('user/cashpay',{ cash : req.query.cash, user:req.user});
+});
+
+
+
+router.post('/paycash', function(req, res, next) {
+  console.log(req.body.cash);
+
+
+  var sql = "select user set cash=? where authid=?"
+    conn.query(sql, [ req.body.cash ,req.user.authId ] , function(err,rows){
+        var sql = "update user set cash=? where authid=?"
+        conn.query(sql, [ req.body.cash ,req.user.authId ] , function(err,rows){
+          if(err) console.error(err);
+            console.log("캐쉬 충전 완료",rows);
+            res.redirect('/users');
+        });
+  });
+
+
+
+});
+
+
+
 
 module.exports = router;
