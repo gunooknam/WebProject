@@ -52,6 +52,7 @@ section {
 
 
 footer {
+    box-sizing: border-box;
 	margin: 0;
     background: #121212;
 	height: 160px;
