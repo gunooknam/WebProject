@@ -12,9 +12,9 @@ var connection = mysql.createConnection({
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  
+      const id = req.query.id;
 	  //Use the connection
-	  connection.query('select * from movie', function(err, rows) {
+	  connection.query(`select * from movie where id=${id}`, function(err, rows) {
 		  if (err) console.error("err:" + err);
 		  console.log("rows: " +JSON.stringify(rows));
 		  
