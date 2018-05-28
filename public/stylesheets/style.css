@@ -24,6 +24,7 @@ nav {
     display: flex;
     padding: 0px 50px;
     z-index: 11;
+    box-sizing: border-box;
 }
 
 
