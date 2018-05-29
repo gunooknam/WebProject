@@ -30,14 +30,15 @@
             </ul>
           </div>
     </nav>
-    <div class="col-md-4 text-center" style="margin-top:20%; margin-left:40% ">
+    <div class="col-md-4 text-center" style="margin-top:15%; margin-left:40% ">
+           <form action="/users/pay" method="post">
                <div class="panel panel-danger panel-pricing">
                    <div class="panel-heading">
                        <i class="fa fa-desktop"></i>
                        <h3> <%=  term %>개월 이용권</h3>
                    </div>
                    <div class="panel-body text-center">
-                       <p><strong>
+                       <strong><p>
                          <% if( term === "1") { %>
                               3000원
                          <% } else if(term==="3"){ %>
@@ -45,12 +46,15 @@
                          <% } else { %>
                               15000원
                          <% } %>
-                         / <%=  term %>Month</strong></p>
+                         / <%=  term %>Month</p>
+                         이용권을 구매하시겠습니까?</strong>
+                         <input name="term" value='<%= term %>' style="display:none">
                    </div>
                    <div class="panel-footer">
-                       <a class="btn btn-lg btn-block btn-danger" style="color:white" href="/">구매하기</a>
+                       <input class="btn btn-lg btn-block btn-danger" style="color:white" type="submit" value="구매하기">
                    </div>
                </div>
+             </form>
            </div>
   </body>
 </html>
