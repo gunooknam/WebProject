@@ -5,97 +5,116 @@
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 -->
 <html>
-	<head>
-		<title>Movie Hi</title> 
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="stylesheet" href="/stylesheets/style.css" />
 
-	</head>
-	<body>
-		<!-- Header -->
-		<nav>
-            <div class='logo'>MOVIE HI - !</div>
-            <ul>
-                <li class='active'><a href="/" style="text-decoration:none; color: white;">홈</a></li>
-                <li>카테고리</li>
-                <li>평가하기</li>
-                <% if( typeof user !== "undefined") { %>
-                      <li style="margin-bottom: 10px" ><%= user.nickname %><a href="/auth/logout"> logout?</a></li>
-                      <% } else { %>
-                      <li><a href="/auth/login" style="text-decoration:none; color: white;">로그인</a></li>
-                      <% } %>
-            </ul>
-        </nav>
+<head>
+	<title>Movie Hi</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="/stylesheets/style.css" />
 
-		<!-- Content -->
-		<section>
-			<div class="article">
-				<h1><%= rows[0].title %></h1>
-				<h4><%= rows[0].original_title %></h4>
-				<hr color="gray" size="1">
-				<p>감독id:<%= rows[0].director_id %> | <%= rows[0].runtime %>분 | <%= rows[0].price %>원</p>
-				<hr color="gray" size="1">
-				<h4><%= rows[0].description %></h4>
-                
-				
-				<div style="width:80%; float:left;">
-                    <div style="width:50%; float:left;">
-                        <button type="submit" onclick="alert('wish list에 추가')">
-                        <div style="width:40%; float:left;">
-                            <img src ="https://cdn3.iconfinder.com/data/icons/facebook-ui-flat/48/Facebook_UI-35-128.png" width=100% align:"middle">
-                        </div>
-                        <div style="width:60%; float:left;">
-                            <h3>보고싶어요</h3>
-                        </div>
-                        </button>
-                    </div>
-                    <div style="width:50%; float:left;">
-                        <button type="submit" onclick="alert('wish list에서 삭제')">
-                            <div style="width:40%; float:left;">
-                                <img src ="https://cdn3.iconfinder.com/data/icons/facebook-ui-flat/48/Facebook_UI-38-128.png" width=100% align:"middle">
-                            </div>
-                            <div style="width:60%; float:left;">
-                                <h3>관심없어요</h3>
-                            </div>
-                        </button>
-                    </div>
+</head>
+
+<body>
+	<!-- Header -->
+	<nav>
+		<div class='logo'>MOVIE HI - !</div>
+		<ul>
+			<li>
+				<a href="/" style="text-decoration:none; color: white;">홈</a>
+			</li>
+			<li>카테고리</li>
+			<li>평가하기</li>
+			<% if( typeof user !== "undefined") { %>
+				<li style="margin-bottom: 10px">
+					<%= user.nickname %>
+						<a href="/auth/logout"> logout?</a>
+				</li>
+				<% } else { %>
+					<li>
+						<a href="/auth/login" style="text-decoration:none; color: white;">로그인</a>
+					</li>
+					<% } %>
+		</ul>
+	</nav>
+
+	<!-- Content -->
+	<section>
+		<div class="article">
+			<h1>
+				<%= rows[0].title %>
+			</h1>
+			<h4>
+				<%= rows[0].original_title %>
+			</h4>
+			<hr color="gray" size="1">
+			<p>감독:
+				<%= rows[0].name %>   |  
+					<%= rows[0].runtime %>분   |  
+						 5,000 원</p>
+			<hr color="gray" size="1">
+			<h4>
+				<%= rows[0].description %>
+			</h4>
+
+
+			<div style="width:100%; float:left;">
+				<div style="width:50%; float:left;">
+					<button class='likes' type="submit" onclick="alert('wish list에 추가')">
+						<div style="width:40%; float:left;">
+							<img src="https://cdn3.iconfinder.com/data/icons/facebook-ui-flat/48/Facebook_UI-35-128.png" width=100% align: "middle">
+						</div>
+						<div style="width:60%; float:left;">
+							<h3>보고싶어요</h3>
+						</div>
+					</button>
+				</div>
+				<div style="width:50%; float:left;">
+					<button class='likes' type="submit" onclick="alert('wish list에서 삭제')">
+						<div style="width:40%; float:left;">
+							<img src="https://cdn3.iconfinder.com/data/icons/facebook-ui-flat/48/Facebook_UI-38-128.png" width=100% align: "middle">
+						</div>
+						<div style="width:60%; float:left;">
+							<h3>관심없어요</h3>
+						</div>
+					</button>
 				</div>
 			</div>
-			<div class="poster">
-				<div style="width: 100%; z-index:1;"> 
-					<img style="width: 100%;" src="<%= rows[0].backdrop_path %>"> </img>
+			<button class='purchase'>구매하기</button>
+		</div>
+		<div class="poster">
+			<iframe class='video' src="https://www.youtube.com/embed/<%= rows[0].youtube %>" frameborder="0" allow="autoplay; encrypted-media"
+			 allowfullscreen></iframe>
+		</div>
+	</section>
+
+	<!-- Footer -->
+	<footer>
+		<div class="footer__links">
+			<a href="#">무하 서비스 이용약관</a>
+			<span>   |   </span>
+			<a href="#" class="privacy">개인정보 취급방침</a>
+			<span>   |   </span>
+			<a class="" href="/help">고객센터</a>
+			<span>   |   </span>
+			<a href="http://frograms.com/joinus" target="_blank">채용정보</a>
+		</div>
+		<div class="footer__contact-info" data-reactid=".2dgluquabr4.6.1">
+			<div class="footer__contact" data-reactid=".2dgluquabr4.6.1.0">
+				<div class="footer__contact-title" data-reactid=".2dgluquabr4.6.1.0.0">고객센터(이용 및 결제 문의)</div>
+				<div class="footer__contact-desc" data-reactid=".2dgluquabr4.6.1.0.1">
+					<a href="mailto:cs@watchaplay.net" data-reactid=".2dgluquabr4.6.1.0.1.0">cs@watchaplay.net</a>
+					<span data-reactid=".2dgluquabr4.6.1.0.1.1"> / 02-515-9985(유료)</span>
 				</div>
 			</div>
-		</section>		
-		
-		<!-- Footer -->
-		<footer>
-			<div class="footer__links">
-				<a href="#">무하 서비스 이용약관</a>
-				<span>   |   </span>
-				<a href="#" class="privacy">개인정보 취급방침</a>
-				<span>   |   </span>
-				<a class="" href="/help">고객센터</a>
-				<span>   |   </span>
-				<a href="http://frograms.com/joinus" target="_blank">채용정보</a>
-			</div>
-			<div class="footer__contact-info" data-reactid=".2dgluquabr4.6.1">
-				<div class="footer__contact" data-reactid=".2dgluquabr4.6.1.0">
-					<div class="footer__contact-title" data-reactid=".2dgluquabr4.6.1.0.0">고객센터(이용 및 결제 문의)</div>
-					<div class="footer__contact-desc" data-reactid=".2dgluquabr4.6.1.0.1">
-						<a href="mailto:cs@watchaplay.net" data-reactid=".2dgluquabr4.6.1.0.1.0">cs@watchaplay.net</a>
-						<span data-reactid=".2dgluquabr4.6.1.0.1.1"> / 02-515-9985(유료)</span>
-					</div>
-				</div>
 			<div class="footer__contact" data-reactid=".2dgluquabr4.6.1.1">
 				<div class="footer__contact-title" data-reactid=".2dgluquabr4.6.1.1.0">제휴 및 대외 협력</div>
 				<div class="footer__contact-desc" data-reactid=".2dgluquabr4.6.1.1.1">
-				<a href="mailto:contact@watcha.com" data-reactid=".2dgluquabr4.6.1.1.1.0">contact@watcha.com</a>
-				<span data-reactid=".2dgluquabr4.6.1.1.1.1"> / 070-7554-9696 (유료)</span>
+					<a href="mailto:contact@watcha.com" data-reactid=".2dgluquabr4.6.1.1.1.0">contact@watcha.com</a>
+					<span data-reactid=".2dgluquabr4.6.1.1.1.1"> / 070-7554-9696 (유료)</span>
 				</div>
 			</div>
-			</div>
-		</footer>
-	</body>
+		</div>
+	</footer>
+</body>
+
 </html>

@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
 	  //Use the connection
 
 
-	  connection.query(`SELECT * FROM movie WHERE id=${id}`, function(err, rows) {
+	  connection.query(`SELECT * FROM movie JOIN director ON movie.director_id = director.id WHERE movie.id=${id}`, function(err, rows) {
 		  if (err) console.error("err:" + err);
 		  console.log("rows: " +JSON.stringify(rows));
 
