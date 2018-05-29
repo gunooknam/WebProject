@@ -7,6 +7,7 @@ const browserConfig = {
     entry: {
         main: './react/pages/main/main.js',
         category: './react/pages/category/category.js',
+        movieRegister: './react/pages/movie_register/movieRegister.js',
     },
     output: {
         filename: '[name]_bundle.js',
