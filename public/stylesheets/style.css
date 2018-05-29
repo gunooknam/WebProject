@@ -1,8 +1,149 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
 
 a {
   color: #00B7FF;
+}
+a:link		{ text-decoration: none; color: #5E5E5E}
+a:visited	{  text-decoration: none; color: #5E5E5E}
+a:active 	{  text-decoration: none; color: #5E5E5E}
+a:hover 	{ text-decoration: underline; color:#F36798}
+		  
+body {
+    margin: 0;
+    background-color: #191919;
+   
+	/*
+	background-image : url('http://imgnews.naver.com/image/5575/2018/05/13/0000004184_002_20180513143055029.jpg');
+	background-blend-mode: multiply;
+	*/
+}
+
+nav {
+    background: rgba(0, 0, 0, 0.4);
+    height: 80px;
+    width: 100%;
+    display: flex;
+    padding: 0px 50px;
+    z-index: 11;
+    box-sizing: border-box;
+}
+
+
+section {
+	color: white;
+	padding: 50px 50px;
+
+}
+.article {
+	float: left;
+	width: 30%;
+	
+}
+
+.poster {
+	width : 67%;
+	float: right;
+}
+
+.poster-opacity{
+	background-color : rgba(25,25,25,0.7);
+	opacity : 0;
+	
+}
+
+
+
+footer {
+    box-sizing: border-box;
+	margin: 0;
+    background: #121212;
+	height: 160px;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	top: 700px;
+	padding: 27px 50px 54px;
+}
+
+.footer__links {
+	vertical-align : middle;
+	color: rgba(255, 255, 255, 0.2);
+	font-size: 10px;
+	letter-spacing: -0.5px;
+}
+
+.footer__contact-info {
+	margin-top : 24px;
+	vertical-align : middle;
+	color: rgba(255, 255, 255, 0.7);
+	font-size: 12px;
+	letter-spacing: -0.5px;
+	line-height: 20px;
+}
+.footer__contact-info .footer__contact .footer__contact-title {
+	float: left;
+	width: 160px;
+}
+.footer .footer__contact-info .footer__contact .footer__contact-desc {	
+	float: left;
+}
+
+.logo {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    width: 190px;
+    font-weight: 700;
+    font-size: 23px;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 10px 10px;
+    color: white;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+}
+
+li {
+    display: flex;
+    height: 100%;
+    width: 100px;
+    font-size: 18px;
+    justify-content: center;
+    align-items: center;
+    color: rgba(255,255,255,0.7);
+}
+
+li.active {
+    color: rgba(255,255,255,1.0);
+    font-weight: 600;
+}
+
+li:hover {
+    font-weight: 600;
+    color: rgba(255,255,255,1.0);
+    cursor: pointer;
+}
+
+.title {
+    font-size: 3.8vw;
+    font-weight: 600;
+    margin-bottom: 35px;
+	border-color : #fff;
+}
+
+button {
+    background:none; 
+    color: rgba(255,255,255,0.7);
+    float:left; 
+    border:none; 
+    outline:none;
+}
+
+button:hover {
+    font-weight: 600;
+    color: rgba(255,255,255,1.0);
+    cursor: pointer;
 }

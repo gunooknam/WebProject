@@ -42,10 +42,9 @@ module.exports = function(passport){
     )
   );
   router.get('/logout', function(req,res){
-    console.log("dd");
     req.logout();
     req.session.save(function(){
-      res.redirect('/welcome'); //save라는 함수가 있고 여기서 콜백을 준다.
+      res.redirect('/'); //save라는 함수가 있고 여기서 콜백을 준다.
     }); //저장이 끝났을 떄 인자로 전달한 콜백을 나중에 호출한다.
   });
 

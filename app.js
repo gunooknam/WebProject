@@ -9,12 +9,14 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var apiRouter = require('./routes/api');
 var adminRouter = require('./routes/admin');
+var moviedetail = require('./routes/moviedetail');
 
 app.use('/api', apiRouter);
 app.use('/auth', loginRouter);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/admin', adminRouter);
+app.use('/moviedetail', moviedetail);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -30,4 +32,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 module.exports = app;

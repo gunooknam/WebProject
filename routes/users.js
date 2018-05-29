@@ -14,7 +14,6 @@ var Transport = nodemailer.createTransport({
     }
  });
 
-
 var _storage = multer.diskStorage({
   destination: function(req, file, cb){
       cb(null, 'public/images');
@@ -27,7 +26,11 @@ var upload = multer({ storage :_storage });
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   console.log(req.user);
-  res.render('userlayout', { user:req.user});
+  var sql = "select * from ticket where authId=?";
+  conn.query(sql, [req.user.authId], function(err, rows){
+      console.log(rows);
+      res.render('userlayout', { user: req.user, ticket : rows}) ;
+  });
 });
 
 
@@ -94,6 +97,66 @@ router.post('/removeuser', function(req, res, next) {
     });
   });
 });
+
+router.get('/pay', function(req, res, next) {
+  res.render('user/pay',{ term : req.query.term, user:req.user});
+});
+
+router.post('/pay', function(req, res, next) {
+  var term=req.body.term;
+  console.log('test');
+  var selsql= "select * from ticket where authId=?"
+  conn.query(selsql, req.user.authId, function(err, rows){
+        if(err) console.log("없음");
+        else if(rows[0]){
+          console.log("기간추가")
+          var sqr= "update ticket SET expired=DATE_ADD(expired, INTERVAL "+req.body.term+" MONTH) where authId=?";
+          console.log(sqr);
+          conn.query(sqr,  [req.user.authId] , function(err,rows){
+          if(err) {
+          console.error(err);
+          res.writeHead('200', {'Content-Type':'text/html; charset=utf-8'});
+          return res.write("<script>alert('기간을 추가하지 못했습니다.'); location.href='http://localhost:3000/users';</script>");
+          }
+          res.writeHead('200', {'Content-Type':'text/html; charset=utf-8'});
+          return res.write("<script>alert('기간이 추가되었습니다.'); location.href='http://localhost:3000/users';</script>");
+          });
+        }
+        else {
+        var term=req.body.term;
+        var now=new Date();
+        var time=now.toISOString().slice(0, 19).replace('T', ' ');
+        now.setMonth(new Date().getMonth() + Number(req.body.term));
+        var expiredtime=now.toISOString().slice(0, 19).replace('T', ' ');
+        var sql = "insert into ticket (authId, term, buyday, expired) values(?,?,?,?)";
+        conn.query(sql, [ req.user.authId, term, time , expiredtime] , function(err,rows){
+        if(err) { console.error(err); }
+        console.log(" 이용권 충전완료 ", rows);
+        res.writeHead('200', {'Content-Type':'text/html; charset=utf-8'});
+        return res.write("<script>alert('이용권을 구매하였습니다.'); location.href='http://localhost:3000/users';</script>");
+        });
+      }
+    });
+});
+router.get('/paycash', function(req, res, next) {
+  res.render('user/cashpay', {cash : req.query.cash, user:req.user});
+});
+
+router.post('/paycash', function(req, res, next) {
+  console.log(req.body.cash);
+  console.log(req.user.authId);
+    var sql = "update user set cash=? where authId=?"
+    var num=Number(req.user.cash)+Number(req.body.cash);
+    conn.query(sql, [String(num), req.user.authId] , function(err,rows){
+      if(err) console.error(err);
+        console.log("캐쉬 충전 완료",rows);
+        res.writeHead('200', {'Content-Type':'text/html; charset=utf-8'});
+        res.write("<script>alert('캐쉬가 충전되었습니다.');location.href='http://localhost:3000/users';</script>");
+    });
+
+});
+
+
 
 
 module.exports = router;
