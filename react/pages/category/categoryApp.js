@@ -86,7 +86,7 @@ class CategoryApp extends React.Component {
     })
 
     const options = document.querySelectorAll('.selector-title-wrapper div');
-    fetch(`http://localhost:3000/api/movie/?page=${this.state.page}&genre=${options[0].getAttribute('data-id')}&sort=${options[1].getAttribute('data-id')}`)
+    fetch(`http://localhost:3000/api/movie/?page=${this.state.page}&genre=${options[0].getAttribute('data-id')}&sort=${options[1].getAttribute('data-id')}&title=`)
       .then(r => r.json())
       .then(r => {
         this.setState({

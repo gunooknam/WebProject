@@ -57,7 +57,7 @@ router.get('/category', function (req, res) {
     query(`SELECT * FROM genre;`)
         .then(r=> {
             data.genreList = [{id: -1, genre: "모든 장르"}, ...r];
-            return query(`SELECT * FROM movie ORDER BY vote_average DESC LIMIT 50`);
+            return query(`SELECT * FROM movie ORDER BY vote_average DESC LIMIT 70`);
         })
         .then(r => {
             data.movieList = r;
