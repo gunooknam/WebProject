@@ -11,4 +11,19 @@ router.get('/movie', (req, res) => {
     });
 });
 
+router.get('/actor', (req, res) => {
+    const query = `SELECT * FROM actor WHERE name LIKE "%${req.query.q}%"`;
+    conn.query(query, (err, row) => {
+        res.send(row);
+    });
+});
+
+router.get('/director', (req, res) => {
+    const query = `SELECT * FROM director WHERE name LIKE "%${req.query.q}%"`;
+    conn.query(query, (err, row) => {
+        res.send(row);
+    });
+});
+
+
 module.exports = router;

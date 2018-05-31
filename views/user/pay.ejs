@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+  <html lang="en" dir="ltr">
+  <link rel = 'stylesheet' type="text/public" href='/stylesheets/style.css'/>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.0.min.js" ></script>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/css/mypage.css" />
+  <meta name="viewport" content="width=device-width", initial-scale="1">
+  <style>
+
+  </style>
+  <head>
+    <meta charset="utf-8">
+    <title>결제 페이지</title>
+  </head>
+  <body>
+    <nav>
+        <div class='logo'><span>MOVIE HI - !</span>
+            <ul style="list-style: none; display: flex; margin:10; ">
+              <li class='active' style="margin-left:20% ; width: 100px;font-size: 18px;justify-content: center; align-items: center;"><a href="/" style="text-decoration:none; color: white;">홈</a></li>
+              <li style="width: 150px;font-size: 18px;justify-content: center;align-items: center;">카테고리</li>
+              <li style="width: 150px;font-size: 18px;justify-content: center;align-items: center;">평가하기</li>
+              <% if( typeof user !== "undefined") { %>
+              <li style="margin-bottom: 10px; width: 150px;font-size: 18px;justify-content: center;align-items: center;" ><%= user.nickname %><a href="/auth/logout"> logout?</a></li>
+              <% } else { %>
+              <li style="width: 150px;font-size: 18px;justify-content: center; align-items: center;"><a href="/auth/login" style="text-decoration:none; color: white; width: 100px;font-size: 18px;justify-content: center;align-items: center;">로그인</a></li>
+              <% } %>
+            </ul>
+          </div>
+    </nav>
+    <div class="col-md-4 text-center" style="margin-top:15%; margin-left:40% ">
+           <form action="/users/pay" method="post">
+               <div class="panel panel-danger panel-pricing">
+                   <div class="panel-heading">
+                       <i class="fa fa-desktop"></i>
+                       <h3> <%=  term %>개월 이용권</h3>
+                   </div>
+                   <div class="panel-body text-center">
+                       <strong><p>
+                         <% if( term === "1") { %>
+                              3000원
+                         <% } else if(term==="3"){ %>
+                              8000원
+                         <% } else { %>
+                              15000원
+                         <% } %>
+                         / <%=  term %>Month</p>
+                         이용권을 구매하시겠습니까?</strong>
+                         <input name="term" value='<%= term %>' style="display:none">
+                   </div>
+                   <div class="panel-footer">
+                       <input class="btn btn-lg btn-block btn-danger" style="color:white" type="submit" value="구매하기">
+                   </div>
+               </div>
+             </form>
+           </div>
+  </body>
+</html>
