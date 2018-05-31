@@ -1,9 +1,9 @@
 import React from 'react';
 
-const AdminHeader = () => {
+const AdminHeader = ({ title }) => {
     return (
         <nav>
-            <span className='logo'>영화 등록</span>
+            <span className='logo'>{title}</span>
         </nav>
     );
 };

@@ -17,24 +17,29 @@
 <body>
 	<!-- Header -->
 	<nav>
+		<span>
 		<div class='logo'>MOVIE HI - !</div>
 		<ul>
 			<li>
 				<a href="/" style="text-decoration:none; color: white;">홈</a>
 			</li>
-			<li>카테고리</li>
+			<li><a href="/category" style="text-decoration:none; color: white;">카테고리</a></li>
 			<li>평가하기</li>
-			<% if( typeof user !== "undefined") { %>
-				<li style="margin-bottom: 10px">
+		</ul>
+	</span>
+	<span>
+			<ul>
+			<% if(user) { %>
+				<li>
 					<%= user.nickname %>
-						<a href="/auth/logout"> logout?</a>
 				</li>
 				<% } else { %>
 					<li>
 						<a href="/auth/login" style="text-decoration:none; color: white;">로그인</a>
 					</li>
 					<% } %>
-		</ul>
+				</span>
+			</ul>
 	</nav>
 
 	<!-- Content -->
@@ -50,7 +55,7 @@
 			<p>감독:
 				<%= rows[0].name %>   |  
 					<%= rows[0].runtime %>분   |  
-						 5,000 원</p>
+						 2,000 원</p>
 			<hr color="gray" size="1">
 			<h4>
 				<%= rows[0].description %>
@@ -79,13 +84,23 @@
 					</button>
 				</div>
 			</div>
-			<button class='purchase'>구매하기</button>
+			<button class='purchase' onclick="purchase()"><%= purchased ? '시청하기' : '구매하기' %></button>
 		</div>
 		<div class="poster">
 			<iframe class='video' src="https://www.youtube.com/embed/<%= rows[0].youtube %>" frameborder="0" allow="autoplay; encrypted-media"
 			 allowfullscreen></iframe>
 		</div>
 	</section>
+	<script>
+		const purchase = () => {
+			fetch('/api/purchase', { method: 'POST' })
+				.then(r => r.text())
+				.then(r => {
+					if (r=='true') confirm('구매 완료되었습니다. 지금 시청하실래요?') ? document.location.href = '/moviedetail/watch' : false;
+					else alert('잔액이 부족합니다.');
+				});
+		}
+	</script>
 
 	<!-- Footer -->
 	<footer>

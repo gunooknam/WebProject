@@ -36,7 +36,13 @@ router.get('/', function (req, res, next) {
     query(`SELECT * FROM movie ORDER BY id LIMIT 3;`)
         .then(r => {
             data.mainData = r;
-            return query(`SELECT * FROM movie ORDER BY id DESC LIMIT 15;`);
+            return query(`(select *, '1', '1' from movie order by vote_average desc limit 15) union
+            (select *, '1', '1' from movie order by vote_average desc limit 15, 15) union
+            (select *, '1', '1' from movie order by vote_average desc limit 30, 15) union
+            (select * from movie, movie_genres where movie_genres.movie_id = movie.id and movie_genres.genre_id = 27 limit 15) union
+            (select * from movie, movie_genres where movie_genres.movie_id = movie.id and movie_genres.genre_id = 35 limit 15) union
+            (select * from movie, movie_genres where movie_genres.movie_id = movie.id and movie_genres.genre_id = 10749 limit 15) union
+            (select * from movie, movie_genres where movie_genres.movie_id = movie.id and movie_genres.genre_id = 28 limit 15);`);
         })
         .then(r => {
             data.sliderData = r;
@@ -51,7 +57,7 @@ router.get('/category', function (req, res) {
     query(`SELECT * FROM genre;`)
         .then(r=> {
             data.genreList = [{id: -1, genre: "모든 장르"}, ...r];
-            return query(`SELECT * FROM movie ORDER BY vote_average DESC LIMIT 50`);
+            return query(`SELECT * FROM movie ORDER BY vote_average DESC LIMIT 70`);
         })
         .then(r => {
             data.movieList = r;

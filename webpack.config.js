@@ -8,6 +8,7 @@ const browserConfig = {
         main: './react/pages/main/main.js',
         category: './react/pages/category/category.js',
         movieRegister: './react/pages/movie_register/movieRegister.js',
+        adminMain: './react/pages/admin_main/adminMain.js',
     },
     output: {
         filename: '[name]_bundle.js',
