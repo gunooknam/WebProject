@@ -309,10 +309,6 @@ svg:hover {
     margin: 50px auto 15px auto;
 }
 
-.selector-wrapper {
-    margin-bottom: 45px;
-}
-
 .category-result-wrapper .row-item {
     margin-bottom: 60px;
 }
@@ -365,4 +361,38 @@ button.movie-register {
     border: none;
     border-radius: 2px;
     box-sizing: border-box;
+}
+
+
+.top-wrapper {
+    display: flex;
+    margin-bottom: 45px;
+    justify-content: space-between;
+}
+
+.searchbar {
+    width: 35vw;
+    background-color: #191919;
+    color: white;
+    border: 1px solid rgba(255,255,255,0.3);
+    height: 56px;
+    box-sizing: border-box;
+    font-size: 1.3vw;
+    font-weight: 200;
+    padding: 0 65px 0 15px;
+    display: block;
+}
+
+.searchbar-wrapper {
+    position: relative;
+    
+}
+
+.searchbar-wrapper span {
+    position: absolute;
+    top: 50%;
+    cursor: pointer;
+    color: gray;
+    transform: translateY(-50%);
+    right: 15px;
 }
