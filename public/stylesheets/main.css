@@ -271,7 +271,7 @@ svg:hover {
     padding: 7px 7px 7px 15px;
     cursor: pointer;
     display: flex;
-    width: 13vw;
+    width: 18vw;
     box-sizing: border-box;
     justify-content: space-between;
 }
@@ -280,7 +280,7 @@ svg:hover {
     border: 1px solid rgba(255,255,255,0.3);
     border-top: none;  
     max-height: 400px;
-    width: 13vw;
+    width: 18vw;
     overflow-y: scroll;
     position: absolute;
     display: none;
