@@ -4,8 +4,26 @@ var multer = require('multer');
 var conn = require('../config/database')();
 var bkfd2Password = require("pbkdf2-password");
 var hasher = bkfd2Password();
-
 var nodemailer = require('nodemailer');
+const WishlistApp = require('../react/pages/wishlist/wishlistApp').default;
+const React = require('react');
+const ReactDOMServer = require('react-dom/server');
+
+const getHtml = (page, bundleName) => {
+  return `
+  <!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset='utf-8'>
+      <link rel='stylesheet' href='/stylesheets/main.css' />
+  </head>
+  <body>
+      <div id='root'>${ReactDOMServer.renderToString(page)}</div>
+      <script src="/${bundleName}.js"></script>
+  </body>
+  `;
+}
+
 var Transport = nodemailer.createTransport({
     service: 'gmail',
     auth : {
@@ -156,7 +174,15 @@ router.post('/paycash', function(req, res, next) {
 
 });
 
-
-
+router.get('/wishlist', function(req, res, next) {
+  if(!req.user) res.redirect('/auth/login')
+  conn.query(`SELECT * FROM movie LIMIT 2`, (err, rows) => {
+    const data = {
+      user: req.user,
+      data: rows
+    }
+    res.send(getHtml(<WishlistApp data={data} />, 'wishlist_bundle'));
+  });
+});
 
 module.exports = router;
