@@ -3,6 +3,7 @@ const React = require('react');
 const multer = require('multer');
 const router = express.Router();
 const MovieRegisterApp = require('../react/pages/movie_register/movieRegisterApp').default;
+const AdminMainApp = require('../react/pages/admin_main/adminMainApp').default;
 
 const getHtml = require('./index')._getHtml
 const query = require('./index')._query;
@@ -17,6 +18,13 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
+
+router.get('/', (req, res) => {
+    query(`SELECT * FROM movie LIMIT 30`)
+        .then(r => {
+            res.send(getHtml(<AdminMainApp data={r} />, 'adminMain_bundle'));
+        });
+});
 
 router.get('/movie', (req, res) => {
     res.send(getHtml(<MovieRegisterApp data={{ a: 2 }} />, 'movieRegister_bundle'));

@@ -12,22 +12,23 @@ var connection = mysql.createConnection({
 	password: pw
 });
 
-//var connection = require("../config/database")();
 /* GET home page. */
 router.get('/', function(req, res, next) {
-      const id = req.query.id;
-	  //Use the connection
-
+	  const id = req.query.id;
+	  const purchased = false;
 
 	  connection.query(`SELECT * FROM movie JOIN director ON movie.director_id = director.id WHERE movie.id=${id}`, function(err, rows) {
 		  if (err) console.error("err:" + err);
 		  console.log("rows: " +JSON.stringify(rows));
 
-		  res.render('moviedetail', {title: 'moviedetail', rows: rows});
-		  //connection.release();
-		  //Don't use the connection here, it has been returned to the pool.
+		  res.render('moviedetail', {title: 'moviedetail', rows, purchased, user: req.user });
 		});
+});
 
+router.get('/watch', function(req, res, next) {
+	const id = req.query.id;
+
+	res.render('watch');
 });
 
 module.exports = router;

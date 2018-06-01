@@ -38,10 +38,10 @@ const slideLeft = (e) => {
         (boundPosition + '%') : (nextPosition + '%');
 }
 
-const Row = ({ data }) => {
+const Row = ({ data, text }) => {
     return (
         <div className='row'>
-            <div className='row-title'><span>이번주 인기 영화</span></div>
+            <div className='row-title'><span>{text}</span></div>
             <div className='row-container'>
                 <FaAngleLeft onClick={(e) => slideLeft(e)} size={60} color="gray" style={leftAngleStyle} />
                 <div>
