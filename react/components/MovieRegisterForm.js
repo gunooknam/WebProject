@@ -3,7 +3,7 @@ import MovieRegisterFormItem from './MovieRegisterFormItem';
 
 const MovieRegisterForm = () => {
     return (
-        <div className='register-form'>
+        <div className='admin-wrapper'>
             <form action='/admin/movie' method='post' encType='multipart/form-data'>
                 <MovieRegisterFormItem label={'영화 제목'} />
                 <MovieRegisterFormItem label={'감독'} />

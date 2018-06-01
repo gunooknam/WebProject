@@ -29,6 +29,7 @@ nav {
     padding: 0px 50px;
     z-index: 11;
     box-sizing: border-box;
+    justify-content: space-between;
 }
 
 
@@ -46,6 +47,10 @@ article {
 .article {
 	width: 35%;
 	
+}
+
+nav span {
+    display: flex;
 }
 
 .poster {

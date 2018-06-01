@@ -19,6 +19,14 @@ const Header = ({ activeIndex, user }) => {
             link: '/wishlist',
         },
     ];
+    
+    const mouseOver = () => {
+        document.querySelector('.user span').classList.add('active');
+    }
+    const mouseOut = () => {
+        document.querySelector('.user span').classList.remove('active');
+    }
+
     return (
         <nav>
             <span>
@@ -29,8 +37,14 @@ const Header = ({ activeIndex, user }) => {
                     })}
                 </ul>
             </span>
-            <span>
-                <li><a href={user ? '#' : '/auth/login'}>{user ? user.name: '로그인'}</a></li>
+            <span className='user' onMouseOver={() => mouseOver()} onMouseOut={() => mouseOut()}>
+                <li><a href={user ? '/users' : '/auth/login'}>{user ? user.name: '로그인'}</a></li>
+                <span>
+                    <li>s</li>
+                    <li>s</li>
+                    <li>s</li>
+                    <li>s</li>
+                </span>
             </span>
         </nav>
     );

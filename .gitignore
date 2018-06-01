@@ -6,5 +6,7 @@ config/pw.js
 public/main_bundle.js
 public/category_bundle.js
 public/movieRegister_bundle.js
+public/adminMain_bundle.js
+public/wishlist_bundle.js
 public/*hot-update*
 public/images/*
