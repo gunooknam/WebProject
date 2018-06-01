@@ -12,8 +12,9 @@ const MainSliderItem = ({ index, active, data }) => {
             <img src={data.backdrop_path} />
             <div className='description'>
                 <div className='title'><span>{data.title}</span></div>
-                <div className='info'><span className='year'>2018</span><span className='running'>{data.runtime}분</span></div>
+                <div className='info'><span className='year'>{data.release_date.toString().slice(0, 4)}</span><span className='running'>{data.runtime}분</span></div>
                 <div><span className='summary'>{data.description}</span></div>
+                <div className='detail-link'><a href={`/moviedetail?id=${data.id}`}>보러가기!</a></div>
             </div>
         </div>
     );

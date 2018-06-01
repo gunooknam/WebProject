@@ -542,3 +542,21 @@ canvas.hidden {
     width: 500px;
     height: 500px;
 }
+
+.detail-link {
+    width: 150px;
+    font-size: 20px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255,255,255,0.3);
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.detail-link a{
+    color: white;
+    text-decoration: none;
+}
