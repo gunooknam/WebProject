@@ -3,7 +3,36 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <style>
+input[type=text], textarea {
+    width: 95%;
+    padding: 12px 20px;
+    margin: 8px 0px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size:16px;
+
+
+}
+input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size:16px;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+    </style>
+      <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     <script>
         function onModifySubmit() {
             alert("수정되었습니다.");
@@ -13,44 +42,47 @@
   <body>
             <header>
             <nav>
+		<span>
 		<div class='logo'>MOVIE HI - !</div>
 		<ul>
 			<li>
 				<a href="/" style="text-decoration:none; color: white;">홈</a>
 			</li>
-			<li>카테고리</li>
+			<li><a href="/category" style="text-decoration:none; color: white;">카테고리</a></li>
 			<li>평가하기</li>
-			<% if( typeof user !== "undefined") { %>
-				<li style="margin-bottom: 10px">
+		</ul>
+	</span>
+	<span>
+			<ul>
+			<% if(user) { %>
+				<li>
 					<%= user.nickname %>
-						<a href="/auth/logout"> logout?</a>
 				</li>
 				<% } else { %>
 					<li>
 						<a href="/auth/login" style="text-decoration:none; color: white;">로그인</a>
 					</li>
 					<% } %>
-		</ul>
+				</span>
+			</ul>
 	</nav>
           </header>
-    <article>
-    <h1><%= title %></h1>
+    <article style="padding:20px 16%;">
+     <h2><%=title%></h2>
+        <div style="border-radius: 5px;background-color: #f2f2f2;
+    padding: 30px; height:400px; font-size:16px; position:relative;" >
     <form method="post" action="/noticemodify/<%= rows[0].id %>" onsubmit="onModifySubmit()">
-      <table border="2">
-        <tr>
-          <th>제목</th>
-          <td><input type="text" name="title" id="title" value="<%= rows[0].title %>" required /></td>
-        </tr>
-        
-        <tr>
-          <th>내용</th>
-          <td><textarea cols="50" role="12" name="content" id="content" required><%= rows[0].content %></textarea></td>
-        </tr>
-        <tr>
-          <td colspan="2"><input type="submit" value="등록"></td>
-        </tr>
-      </table>
+     
+        <label> 제 목</label>
+        <input type="text" name="title" id="title" value="<%= rows[0].title %>" required />
+
+           <label> 내 용</label>
+          <textarea  cols="10" rows="10" name="content" id="content" required><%= rows[0].content %></textarea>
+    
+       
+      <input type="submit" value="등록">
     </form>
+        </div>
     </article>
       
 <!-- Footer -->

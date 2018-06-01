@@ -97,24 +97,29 @@
   <body>
       <header>
             <nav>
+		<span>
 		<div class='logo'>MOVIE HI - !</div>
 		<ul>
 			<li>
 				<a href="/" style="text-decoration:none; color: white;">홈</a>
 			</li>
-			<li>카테고리</li>
+			<li><a href="/category" style="text-decoration:none; color: white;">카테고리</a></li>
 			<li>평가하기</li>
-			<% if( typeof user !== "undefined") { %>
-				<li style="margin-bottom: 10px">
+		</ul>
+	</span>
+	<span>
+			<ul>
+			<% if(user) { %>
+				<li>
 					<%= user.nickname %>
-						<a href="/auth/logout"> logout?</a>
 				</li>
 				<% } else { %>
 					<li>
 						<a href="/auth/login" style="text-decoration:none; color: white;">로그인</a>
 					</li>
 					<% } %>
-		</ul>
+				</span>
+			</ul>
 	</nav>
           </header>
       <article>
@@ -122,7 +127,9 @@
             <h1 style="margin:0; padding:0px" >공지사항</h1>
         </div>
           <div style="width:50%; float:right; height:50px; ">
-              <a href="/noticewrite" style="float:right; width:10%"  class="button">글작성</a> 
+              <%if(user) { if(user.id ==1) { %>
+              <a href="/noticewrite" style="float:right; width:10%"  class="button">글작성</a>
+              <%} }%>
             </div>
         <br><br><hr>
           <form>
@@ -135,8 +142,10 @@
                 <div style="DISPLAY: none">
                     <br><br><hr  style="height:3.5px;">
                     <div style=" float:right; width:100%;">
+                        <%if(user) { if(user.id ==1) { %>
                         <a href="/noticemodify/<%=rows[i].id%>" class="button" style=" float:right; ">글수정</a>
                         <a onclick="delete_button_event(<%=rows[i].id%>)" class="button" style=" float:right;">글삭제</a>
+                        <%} }%>
                     </div>
                     <div style="">
                         <span> <%=rows[i].content%> </span>
@@ -154,8 +163,10 @@
                 <div style="DISPLAY: none">
                     <br><br><br><hr  style="height:3.5px;">
                     <div style=" float:right; width:100%;">
+                        <%if(user) { if(user.id ==1) { %>
                         <a href="" class="button" style=" float:right; ">글수정</a>
                         <a onclick="" class="button" style=" float:right;">글삭제</a>
+                        <%} }%>
                     </div>
                     <div>
                     <span> 
@@ -196,8 +207,10 @@
                 <div style="DISPLAY: none">
                     <br><br><br><hr  style="height:3.5px;">
                     <div style=" float:right; width:100%;">
+                        <%if(user) { if(user.id ==1) { %>
                         <a href="" class="button" style=" float:right; ">글수정</a>
                         <a onclick="" class="button" style=" float:right;">글삭제</a>
+                        <% } } %>
                     </div>
                     <div>
                     <span> 

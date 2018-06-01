@@ -25,7 +25,7 @@ router.get('/:id',function (req,res,next) {//path방식 인자 받아오기, get
               res.status.send('Internal Server Error');
             }
             else{
-              res.render('noticemodify', {title:"공지사항 수정", rows:rows});
+              res.render('noticemodify', {title:"공지사항 수정", rows:rows , user:req.user});
             }
       });
     } else {

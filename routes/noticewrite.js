@@ -15,7 +15,7 @@ var connection = mysql.createConnection({
 /* Write Page */
 // GET 방식의 요청이 들어왔을 때 write페이지로 이동합니다.
 router.get('/',function (req,res,next) {
-  res.render('./noticewrite',{title:'공지사항 작성'});
+  res.render('./noticewrite',{title:'공지사항 작성', user:req.user});
 });
 
 // POST 방식의 요청이 들어왔을 때 데이터를 DB에 저장하고 해당하는 DB의 IDX값을

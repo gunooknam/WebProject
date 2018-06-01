@@ -15,7 +15,7 @@ var pool = mysql.createConnection({
 router.get('/', function(req, res, next) {
     pool.query('SELECT * FROM notice order by id desc', function(err, rows, fields) {
        if (err) throw err;
-       res.render('help', { rows: rows });
+       res.render('help', { rows: rows , user:req.user});
    });
 
 });
