@@ -22,8 +22,7 @@ router.get('/',function (req,res,next) {//사용자 아이디
     if(err) {
           //이 쿼리문에서 에러가 발생했을때는 쿼리문의 수행을 취소하고 롤백합니다.
           console.log(err);
-        console.log(req.user.id +"=유저id "+req.query.movie_id +"=영화id wish table에 추가 에러");
-        alert('이미 찜목록에 있습니다.');  
+        console.log(req.user.id +"=유저id "+req.query.movie_id +"=영화id wish table에 이미 존재");
         conn.rollback(function () {
             console.error('rollback error1');
           });
