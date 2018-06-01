@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script>
+        function onModifySubmit() {
+            alert("수정되었습니다.");
+        }
+    </script>
+</head>
+  <body>
+            <header>
+            <nav>
+		<div class='logo'>MOVIE HI - !</div>
+		<ul>
+			<li>
+				<a href="/" style="text-decoration:none; color: white;">홈</a>
+			</li>
+			<li>카테고리</li>
+			<li>평가하기</li>
+			<% if( typeof user !== "undefined") { %>
+				<li style="margin-bottom: 10px">
+					<%= user.nickname %>
+						<a href="/auth/logout"> logout?</a>
+				</li>
+				<% } else { %>
+					<li>
+						<a href="/auth/login" style="text-decoration:none; color: white;">로그인</a>
+					</li>
+					<% } %>
+		</ul>
+	</nav>
+          </header>
+    <article>
+    <h1><%= title %></h1>
+    <form method="post" action="/noticemodify/<%= rows[0].id %>" onsubmit="onModifySubmit()">
+      <table border="2">
+        <tr>
+          <th>제목</th>
+          <td><input type="text" name="title" id="title" value="<%= rows[0].title %>" required /></td>
+        </tr>
+        
+        <tr>
+          <th>내용</th>
+          <td><textarea cols="50" role="12" name="content" id="content" required><%= rows[0].content %></textarea></td>
+        </tr>
+        <tr>
+          <td colspan="2"><input type="submit" value="등록"></td>
+        </tr>
+      </table>
+    </form>
+    </article>
+      
+<!-- Footer -->
+	<footer>
+		<div class="footer__links">
+			<a href="#">무하 서비스 이용약관</a>
+			<span>   |   </span>
+			<a href="#" class="privacy">개인정보 취급방침</a>
+			<span>   |   </span>
+			<a class="" href="/help">고객센터</a>
+			<span>   |   </span>
+			<a href="http://frograms.com/joinus" target="_blank">채용정보</a>
+		</div>
+		<div class="footer__contact-info" data-reactid=".2dgluquabr4.6.1">
+			<div class="footer__contact" data-reactid=".2dgluquabr4.6.1.0">
+				<div class="footer__contact-title" data-reactid=".2dgluquabr4.6.1.0.0">고객센터(이용 및 결제 문의)</div>
+				<div class="footer__contact-desc" data-reactid=".2dgluquabr4.6.1.0.1">
+					<a href="mailto:cs@watchaplay.net" data-reactid=".2dgluquabr4.6.1.0.1.0">cs@watchaplay.net</a>
+					<span data-reactid=".2dgluquabr4.6.1.0.1.1"> / 02-515-9985(유료)</span>
+				</div>
+			</div>
+			<div class="footer__contact" data-reactid=".2dgluquabr4.6.1.1">
+				<div class="footer__contact-title" data-reactid=".2dgluquabr4.6.1.1.0">제휴 및 대외 협력</div>
+				<div class="footer__contact-desc" data-reactid=".2dgluquabr4.6.1.1.1">
+					<a href="mailto:contact@watcha.com" data-reactid=".2dgluquabr4.6.1.1.1.0">contact@watcha.com</a>
+					<span data-reactid=".2dgluquabr4.6.1.1.1.1"> / 070-7554-9696 (유료)</span>
+				</div>
+			</div>
+		</div>
+	</footer>
+  </body>
+</html>

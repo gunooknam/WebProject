@@ -14,6 +14,10 @@ const Header = ({ activeIndex, user }) => {
             title: '평가하기',
             link: '/evaluate',
         },
+        {
+            title: '찜목록',
+            link: '/wishlist',
+        },
     ];
     return (
         <nav>

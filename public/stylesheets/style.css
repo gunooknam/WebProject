@@ -1,4 +1,8 @@
-
+hr {
+    height: 2px;
+    background:rgba(235, 235, 235, 1); 
+    border: rgba(235, 235, 235, 1);
+}
 a {
   color: #00B7FF;
 }
@@ -33,6 +37,11 @@ section {
 	padding: 50px 50px;
     display: flex;
     justify-content: space-between;
+}
+article {
+    padding: 100px 14%;
+    color: #191919;
+    background-color: rgba(254, 254, 254, 1);
 }
 .article {
 	width: 35%;
@@ -150,6 +159,7 @@ button {
     border:none; 
     outline:none;
 }
+
 
 .likes {
     display: flex;
