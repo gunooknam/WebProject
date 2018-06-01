@@ -6,11 +6,10 @@ a:link		{ text-decoration: none; color: #5E5E5E}
 a:visited	{  text-decoration: none; color: #5E5E5E}
 a:active 	{  text-decoration: none; color: #5E5E5E}
 a:hover 	{ text-decoration: underline; color:#F36798}
-		  
+
 body {
     margin: 0;
     background-color: #191919;
-   
 	/*
 	background-image : url('http://imgnews.naver.com/image/5575/2018/05/13/0000004184_002_20180513143055029.jpg');
 	background-blend-mode: multiply;
@@ -31,36 +30,33 @@ nav {
 section {
 	color: white;
 	padding: 50px 50px;
-
+  display: flex;
 }
 .article {
-	float: left;
 	width: 30%;
-	
+
 }
 
 .poster {
 	width : 67%;
-	float: right;
+	margin-left: 1%;
 }
 
 .poster-opacity{
 	background-color : rgba(25,25,25,0.7);
 	opacity : 0;
-	
+
 }
 
 
-
 footer {
-    box-sizing: border-box;
+  box-sizing: border-box;
 	margin: 0;
-    background: #121212;
+  background: #121212;
 	height: 160px;
 	width: 100%;
-	position: absolute;
 	bottom: 0;
-	top: 700px;
+	top: 100%;
 	padding: 27px 50px 54px;
 }
 
@@ -83,7 +79,7 @@ footer {
 	float: left;
 	width: 160px;
 }
-.footer .footer__contact-info .footer__contact .footer__contact-desc {	
+.footer .footer__contact-info .footer__contact .footer__contact-desc {
 	float: left;
 }
 
@@ -135,10 +131,10 @@ li:hover {
 }
 
 button {
-    background:none; 
+    background:none;
     color: rgba(255,255,255,0.7);
-    float:left; 
-    border:none; 
+    float:left;
+    border:none;
     outline:none;
 }
 
