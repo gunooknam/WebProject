@@ -140,5 +140,11 @@ module.exports = function(passport){
     });
  });
 
+    
+router.get('/wishadd',function(req, res){
+    res.render("moviedetail",{ user:req.user});    
+});
+
+    
   return router;
 }

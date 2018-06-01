@@ -16,17 +16,23 @@ var connection = mysql.createConnection({
 /* GET home page. */
 router.get('/', function(req, res, next) {
       const id = req.query.id;
+    const user = req.user;
 	  //Use the connection
 
 
-	  connection.query(`SELECT * FROM movie JOIN director ON movie.director_id = director.id WHERE movie.id=${id}`, function(err, rows) {
+	  connection.query(`SELECT *,movie.id as movie_id FROM movie JOIN director ON movie.director_id = director.id WHERE movie.id=${id}`, function(err, rows) {
 		  if (err) console.error("err:" + err);
 		  console.log("rows: " +JSON.stringify(rows));
 
-		  res.render('moviedetail', {title: 'moviedetail', rows: rows});
+		  res.render('moviedetail', {title: 'moviedetail', rows: rows, user: user});
 		  //connection.release();
 		  //Don't use the connection here, it has been returned to the pool.
 		});
+        console.log("@test");
+        //console.log("@1:"+ user);
+        console.log("@2:"+ req.user);
+        //console.log("@3:"+ req.user.id);
+        //console.log("@4:"+ user.id);
 
 });
 

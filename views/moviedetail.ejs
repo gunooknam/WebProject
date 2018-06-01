@@ -11,30 +11,46 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="stylesheet" href="/stylesheets/style.css" />
+    <script type="text/javascript">
+        function wishadd_event(movie_id){
+            if(typeof user) { //typeof user !== "undefined" 조건 왜 안되지
+                alert('wish list에 추가'+movie_id);
+                location.href="/wishadd?movie_id=" + movie_id;
+            }
+            else {
+                alert('로그인을 해주세요.');
+            }
+            return;
+        }
+        function wishdel_event(movie_id){
+            if(typeof user) { //typeof user !== "undefined" 조건 왜 안되지
+                alert('wish list에서 삭제'+movie_id);
+                location.href="/wishadd?movie_id=" + movie_id;
+            }
+            else {
+                alert('로그인을 해주세요.');
+            }
+            return;
+        }
+    </script>
 </head>
 
 <body>
 	<!-- Header -->
 	<nav>
-		<div class='logo'>MOVIE HI - !</div>
-		<ul>
-			<li>
-				<a href="/" style="text-decoration:none; color: white;">홈</a>
-			</li>
-			<li>카테고리</li>
-			<li>평가하기</li>
-			<% if( typeof user !== "undefined") { %>
-				<li style="margin-bottom: 10px">
-					<%= user.nickname %>
-						<a href="/auth/logout"> logout?</a>
-				</li>
-				<% } else { %>
-					<li>
-						<a href="/auth/login" style="text-decoration:none; color: white;">로그인</a>
-					</li>
-					<% } %>
-		</ul>
-	</nav>
+                <div class='logo'><span>MOVIE HI - !</span>
+                    <ul>
+                      <li class='active' style="margin-left:20%"><a href="/" style="text-decoration:none; color: white;">홈</a></li>
+                      <li>카테고리</li>
+                      <li>평가하기</li>
+                      <% if( typeof user !== "undefined") { %>
+                      <li style="margin-bottom: 10px" ><%= user.nickname %><a href="/auth/logout"> logout?</a></li>
+                      <% } else { %>
+                      <li><a href="/auth/login" style="text-decoration:none; color: white;">로그인</a></li>
+                      <% } %>
+                    </ul
+              ></div>
+            </nav>
 
 	<!-- Content -->
 	<section>
@@ -59,7 +75,7 @@
 
 			<div style="width:100%; float:left;">
 				<div style="width:50%; float:left;">
-					<button class='likes' type="submit" onclick="alert('wish list에 추가')">
+					<button class='likes' type="submit" onclick="wishadd_event(<%= rows[0].movie_id%>)">
 						<div style="width:40%; float:left;">
 							<img src="https://cdn3.iconfinder.com/data/icons/facebook-ui-flat/48/Facebook_UI-35-128.png" width=100% align: "middle">
 						</div>
