@@ -15,6 +15,8 @@ var noticewrite = require('./routes/noticewrite');
 var noticemodify = require('./routes/noticemodify');
 var noticeremove = require('./routes/noticeremove');
 var wishadd = require('./routes/wishadd');
+var wishdel = require('./routes/wishdel');
+
 //var wishlist = require('./routes/wishlist');
 
 app.use('/api', apiRouter);
@@ -28,6 +30,8 @@ app.use('/noticewrite', noticewrite);
 app.use('/noticemodify', noticemodify);
 app.use('/noticeremove', noticeremove);
 app.use('/wishadd', wishadd);
+app.use('/wishdel', wishdel);
+
 //app.use('/wishlist', wishlist);
 
 // catch 404 and forward to error handler
