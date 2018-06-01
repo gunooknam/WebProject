@@ -13,35 +13,16 @@
 	<link rel="stylesheet" href="/stylesheets/style.css" />
     <script type="text/javascript" src="//code.jquery.com/jquery-1.7.1.js"></script> 
     <script type="text/javascript" language="javaScript">
-        function wishadd_event(movie_id){
-            alert('test');
-            alert(movie_id);
-            alert();
-            alert(<%= rows[0].movie_id %>);
-            user_id = <%= user.id%>;
-
-            if(typeof user == 'undefined') { //typeof user !== "undefined" 조건 왜 안되지
-                alert('로그인을 해주세요.');
-            }
-            else if(<%= user.id%>) {
-                     alert('찜목록에 추가');
-                //location.href="/wishadd?movie_id=" + movie_id;
-            }
-            else {
-                alert("찜목록 추가 에러");
-            }
-            return;
+        function wish_event_logout(){
+            alert('로그인을 해주세요.');
         }
-        function wishdel_event(user_id, movie_id){
-            alert("test");
-            if(user_id !== "undefined") { //typeof user !== "undefined" 조건 왜 안되지
-                alert('찜목록에서 삭제');
-                location.href="/wishdel?movie_id=" + movie_id;
-            }
-            else {
-                alert('로그인을 해주세요.');
-            }
-            return;
+        function wishadd_event_login(movie_id){
+            alert('찜목록에 추가');
+            location.href="/wishadd?movie_id=" + movie_id;
+        }
+        function wishdel_event_login(movie_id){
+            alert('찜목록에서 삭제');
+            location.href="/wishdel?movie_id=" + movie_id;
         }
     </script>
 </head>
@@ -92,37 +73,13 @@
 			<h4>
 				<%= rows[0].description %>
 			</h4>
-
-            
-            
-            
-            <div>
-            
-          <% 
-            if( typeof user !== "undefined") { 
-        %>
-             <div >로그인 <%=  user.id %></div>
-        <% 
-            } else { 
-        %>
-            <div>로그아웃</div>
-                      
-            
-        <% } %>
-            
-            </div>
-            
-            
-            
-            
-            
-            
-            
-            
-
 			<div style="width:100%; float:left;">
 				<div style="width:50%; float:left;">
-					<button class='likes' type="submit" onclick="wishadd_event(<%= rows[0].movie_id%>)">
+				<% if(user) { %>
+                    <button class='likes' type="submit" onclick="wishadd_event_login(<%= rows[0].movie_id%>)">
+                <% } else { %>
+                    <button class='likes' type="submit" onclick="wish_event_logout(<%= rows[0].movie_id%>)">
+                <% } %>
 						<div style="width:40%; float:left;">
 							<img src="https://cdn3.iconfinder.com/data/icons/facebook-ui-flat/48/Facebook_UI-35-128.png" width=100% align: "middle">
 						</div>
@@ -132,7 +89,11 @@
 					</button>
 				</div>
 				<div style="width:50%; float:left;">
-					<button class='likes' type="submit" onclick="wishdel_event(<%= user.nickname %>,<%= rows[0].movie_id%>)">
+				<% if(user) { %>
+                    <button class='likes' type="submit" onclick="wishdel_event_login(<%= rows[0].movie_id%>)">
+                <% } else { %>
+                    <button class='likes' type="submit" onclick="wish_event_logout(<%= rows[0].movie_id%>)">
+                <% } %>
 						<div style="width:40%; float:left;">
 							<img src="https://cdn3.iconfinder.com/data/icons/facebook-ui-flat/48/Facebook_UI-38-128.png" width=100% align: "middle">
 						</div>
