@@ -10,6 +10,11 @@ var usersRouter = require('./routes/users');
 var apiRouter = require('./routes/api');
 var adminRouter = require('./routes/admin');
 var moviedetail = require('./routes/moviedetail');
+var help = require('./routes/help');
+var noticewrite = require('./routes/noticewrite');
+var noticemodify = require('./routes/noticemodify');
+var noticeremove = require('./routes/noticeremove');
+//var wishlist = require('./routes/wishlist');
 
 app.use('/api', apiRouter);
 app.use('/auth', loginRouter);
@@ -17,6 +22,11 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/admin', adminRouter);
 app.use('/moviedetail', moviedetail);
+app.use('/help', help);
+app.use('/noticewrite', noticewrite);
+app.use('/noticemodify', noticemodify);
+app.use('/noticeremove', noticeremove);
+//app.use('/wishlist', wishlist);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
