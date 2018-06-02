@@ -48,13 +48,16 @@ router.get('/', function (req, res, next) {
             data.sliderData = r;
             res.send(getHtml(<MainApp data={data} />, 'main_bundle'));
         })
-        .catch(e => res.status(500).send(e.sqlMessage));
+        .catch(e => {
+            console.log(e);
+            res.status(500).send(e.sqlMessage);
+        });
 });
 
 router.get('/category', function (req, res) {
     const data = {};
     if(req.user) data.user = req.user;
-    query(`SELECT * FROM movie;`)
+    query(`SELECT * FROM genre;`)
         .then(r=> {
             data.genreList = [{id: -1, genre: "모든 장르"}, ...r];
             return query(`SELECT * FROM movie ORDER BY vote_average DESC LIMIT 70`);

@@ -104,12 +104,11 @@
 				<a href="/" style="text-decoration:none; color: white;">홈</a>
 			</li>
 			<li><a href="/category" style="text-decoration:none; color: white;">카테고리</a></li>
-			<li>평가하기</li>
 		</ul>
 	</span>
-	<span>
-			<ul>
-			<% if(user) { %>
+	<span style='display: flex; flex-direction: column;'>
+			<ul style='flex-direction: column;'>
+			<!-- <% if(user) { %>
 				<li>
 					<%= user.nickname %>
 				</li>
@@ -119,6 +118,12 @@
 					</li>
 					<% } %>
 				</span>
+                <span style='flex-direction: column;'>
+                    <li><a href='/users/wishlist'>찜 목록</a></li>
+                    <li><a href='/users'>마이페이지</a></li>
+                    <li><a href='/help'>고객센터</a></li>
+                    <li><a href='/auth/logout'>로그아웃</a></li>
+                </span> -->
 			</ul>
 	</nav>
           </header>

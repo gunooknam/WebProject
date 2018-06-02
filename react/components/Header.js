@@ -10,14 +10,10 @@ const Header = ({ activeIndex, user }) => {
             title: '카테고리',
             link: '/category',
         },
-        {
-            title: '찜목록',
-            link: '/wishlist',
-        },
     ];
     
     const mouseOver = () => {
-        document.querySelector('.user span').classList.add('active');
+        if(user) document.querySelector('.user span').classList.add('active');
     }
     const mouseOut = () => {
         document.querySelector('.user span').classList.remove('active');
@@ -35,12 +31,17 @@ const Header = ({ activeIndex, user }) => {
             </span>
             <span className='user' onMouseOver={() => mouseOver()} onMouseOut={() => mouseOut()}>
                 <li><a href={user ? '/users' : '/auth/login'}>{user ? user.name: '로그인'}</a></li>
-                <span>
-                    <li>s</li>
-                    <li>s</li>
-                    <li>s</li>
-                    <li>s</li>
-                </span>
+                {user && user.nickname !== 'admin'
+                ? (<span>
+                        <li><a href='/users/wishlist'>찜 목록</a></li>
+                        <li><a href='/users'>마이페이지</a></li>
+                        <li><a href='/help'>고객센터</a></li>
+                        <li><a href='/auth/logout'>로그아웃</a></li>
+                    </span>)
+                : (<span>
+                    <li><a href='/admin'>관리</a></li>
+                </span>)
+                }
             </span>
         </nav>
     );

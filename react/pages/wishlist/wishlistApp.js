@@ -13,11 +13,20 @@ class WishlistApp extends React.Component {
   render() {
     return (
       <div>
-        <Header activeIndex={1} user='22' />
+        <Header activeIndex={1} user={this.props.data.user} />
         <div className='category-wrapper'>
           <div className='category-title'>{this.props.data.user.nickname}님이 구입한 영화</div>
           <div className='category-result-wrapper'>
-            {this.props.data.data.map((item, index) => {
+            {this.props.data.data.filter(item => item.type == 2).map((item, index) => {
+              return item.small_backdrop_path == 'https://image.tmdb.org/t/p/originalnull'
+                ? null
+                : <RowItem key={item.id} data={item} />;
+            })}
+          </div>
+        </div><div className='category-wrapper'>
+          <div className='category-title'>{this.props.data.user.nickname}님이 찜한 영화</div>
+          <div className='category-result-wrapper'>
+            {this.props.data.data.filter(item => item.type == 1).map((item, index) => {
               return item.small_backdrop_path == 'https://image.tmdb.org/t/p/originalnull'
                 ? null
                 : <RowItem key={item.id} data={item} />;

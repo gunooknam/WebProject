@@ -99,7 +99,7 @@ router.post('/pwdreset', function(req, res, next) {
     var sql = "update user set password=?, salt=? where authid=?"
     conn.query(sql, set, function(err,rows){
       if(err) console.error(err);
-        res.redirect('/welcome');
+        res.redirect('../');
     });
   });
 });
@@ -176,7 +176,8 @@ router.post('/paycash', function(req, res, next) {
 
 router.get('/wishlist', function(req, res, next) {
   if(!req.user) res.redirect('/auth/login')
-  conn.query(`SELECT * FROM movie LIMIT 2`, (err, rows) => {
+  conn.query(`select *, '1' type from wish, movie where movie.id = wish.movie_id and wish.user_id=3 union
+  select *, '2' type from purchase, movie where movie.id = purchase.movie_id and purchase.user_id=3;`, (err, rows) => {
     const data = {
       user: req.user,
       data: rows

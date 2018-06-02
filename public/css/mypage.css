@@ -13,6 +13,11 @@ nav {
     justify-content: space-between;
 }
 
+ul {
+    height: 100%;
+    margin: 0;
+}
+
 *,
 *:before,
 *:after {
@@ -224,7 +229,7 @@ font-weight: 200;
 a:link  { text-decoration: none; color: #5E5E5E}
 a:visited {  text-decoration: none; color: #5E5E5E}
 a:active {  text-decoration: none; color: #5E5E5E}
-a:hover { text-decoration: underline; color:#F36798}
+a:hover { text-decoration: none; color:white !important;}
 
 nav {
 background: rgba(0, 0, 0, 0.4);
@@ -248,6 +253,9 @@ padding: 10px 10px;
 color: white;
 }
 
+.logo img {
+    width: 170px;
+}
 
 li.active {
 color: rgba(255,255,255,1.0);

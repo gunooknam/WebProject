@@ -103,17 +103,16 @@ $(function(){
 	<!-- Header -->
 		<nav>
 			<span>
-			<div class='logo'>MOVIE HI - !</div>
+			<div class='logo'><img style='width: 170px;' src='/images/logo.png'></img></div>
 			<ul>
 				<li>
 					<a href="/" style="text-decoration:none; color: white;">홈</a>
 				</li>
 				<li><a href="/category" style="text-decoration:none; color: white;">카테고리</a></li>
-				<li>평가하기</li>
 			</ul>
 		</span>
-		<span>
-				<ul>
+		<!-- <span> -->
+				<!-- <ul>
 				<% if(user) { %>
 					<li>
 						<%= user.name %>
@@ -124,7 +123,7 @@ $(function(){
 						</li>
 						<% } %>
 					</span>
-				</ul>
+				</ul> -->
 		</nav>
 
 		<!-- Content -->
@@ -147,10 +146,10 @@ $(function(){
 				</h4>
 				<div style="width:100%; float:left;">
 							<div style="width:50%; float:left;">
-							<% if(user) { %>
-			                    <button class='likes' type="submit" onclick="wishadd_event_login(<%= rows[0].movie_id%>)">
+							<% if(user !== undefined) { %>
+			                    <button class='likes' type="submit" onclick="wishadd_event_login(<%= rows[0].id%>)">
 			                <% } else { %>
-			                    <button class='likes' type="submit" onclick="wish_event_logout(<%= rows[0].movie_id%>)">
+			                    <button class='likes' type="submit" onclick="wish_event_logout(<%= rows[0].id%>)">
 			                <% } %>
 									<div style="width:40%; float:left;">
 										<img src="https://cdn3.iconfinder.com/data/icons/facebook-ui-flat/48/Facebook_UI-35-128.png" width=100% align: "middle">
@@ -161,7 +160,7 @@ $(function(){
 								</button>
 							</div>
 							<div style="width:50%; float:left;">
-							<% if(user) { %>
+							<% if(user !== undefined) { %>
 			                    <button class='likes' type="submit" onclick="wishdel_event_login(<%= rows[0].movie_id%>)">
 			                <% } else { %>
 			                    <button class='likes' type="submit" onclick="wish_event_logout(<%= rows[0].movie_id%>)">
@@ -176,7 +175,7 @@ $(function(){
 							</div>
 				</div>
 
-				<button class='purchase' onclick="purchase()"><%= purchased ? '시청하기' : '구매하기' %></button>
+				<% if(user !== undefined) { %><button class='purchase' onclick="purchase(<%= rows[0].id %>)"><%= rows[0].purchased > 0 ? '시청하기' : '구매하기' %></button> <% } %>
 			</div>
 			<div class="poster">
 				<iframe class='video' src="https://www.youtube.com/embed/<%= rows[0].youtube %>" frameborder="0" allow="autoplay; encrypted-media"
@@ -184,13 +183,19 @@ $(function(){
 			</div>
 		</section>
 <script>
-	const purchase = () => {
-		fetch('/api/purchase', { method: 'POST' })
+	function purchase(id) {
+		const purchased = <%= rows[0].purchased > 0 %>;
+		if(purchased) {
+			window.location.href='/moviedetail/watch';
+			return;
+		} else {
+		fetch(`/api/purchase?id=${id}`, { method: 'POST', credentials: 'same-origin' })
 			.then(r => r.text())
 			.then(r => {
 				if (r=='true') confirm('구매 완료되었습니다. 지금 시청하실래요?') ? document.location.href = '/moviedetail/watch' : false;
 				else alert('잔액이 부족합니다.');
 			});
+		}
 	}
 </script>
 

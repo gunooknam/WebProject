@@ -18,17 +18,15 @@ var connection = mysql.createConnection({
 router.get('/', function(req, res, next) {
 	  const id = req.query.id;
 	  const purchased = false;
-
-	  connection.query(`SELECT * , movie.id as movie_id FROM movie JOIN director ON movie.director_id = director.id WHERE movie.id=${id}`, function(err, rows) {
+	  connection.query(`SELECT *, (select count(movie_id) from purchase where user_id=${req.user.id} and movie_id=${req.query.id}) purchased FROM movie JOIN director ON movie.director_id = director.id WHERE movie.id=${id}`, function(err, rows) {
 		  if (err) console.error("err:" + err);
+		  console.log(rows[0].purhcased)
 		  //console.log("rows: " +JSON.stringify(rows));
 			connection.query(`SELECT * FROM review WHERE movieId=${id}`, function(err, review) {
 				rows[0].id=id;
-				console.log(rows);
-				 res.render('moviedetail', {title: 'moviedetail', rows: rows, user:req.user, review : review, purchased});
+					 res.render('moviedetail', {title: 'moviedetail', rows: rows, user:req.user, review : review});
 			 });
 		});
-        console.log("req.user:"+ req.user);
 });
 
 router.post('/review', function(req,res){

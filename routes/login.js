@@ -83,7 +83,7 @@ module.exports = function(passport){
               req.login(user, function(err){
               req.session.save(function(){
               console.log("이게 찍히나?");
-              res.redirect('../welcome');
+              res.redirect('../');
             });
           });
         }

@@ -1,132 +1,153 @@
-  <!DOCTYPE html>
-      <html style="display:white">
-        <head>
-          <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-          <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-          <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.20.5/sweetalert2.all.js"></script>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/3.4.0/es5-shim.min.js"></script>
-          <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.0.min.js" ></script>
-          <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-          <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
-          <meta name="viewport" content="width=device-width", initial-scale="1">
-          <link rel="stylesheet" href="/stylesheets/style.css" />
-          <title>Movie_hi </title>
-          </head>
-          <body>
-          <style>
-          a:link  { text-decoration: none; color: #5E5E5E}
-          a:visited {  text-decoration: none; color: #5E5E5E}
-          a:active {  text-decoration: none; color: #5E5E5E}
-          a:hover { text-decoration: underline; color:#F36798}
-          body {
-              margin: 0;
-              background-color: #191919;
-              min-width: 600px;
-          }
-          nav {
-              background: rgba(0, 0, 0, 0.4);
-              height: 80px;
-              width: 100%;
-              display: flex;
-              position: fixed;
-              padding: 0px 50px;
-              z-index: 11;
-          }
+<!DOCTYPE html>
+<html style="display:white">
 
-          .logo {
-              display: flex;
-              align-content: center;
-              align-items: center;
-              font-weight: 700;
-              font-size: 23px;
-              width: 100px;
-              height: 100%;
-              box-sizing: border-box;
-              padding: 10px 10px;
-              color: white;
-          }
+<head>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.20.5/sweetalert2.all.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/3.4.0/es5-shim.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
+    <meta name="viewport" content="width=device-width" , initial-scale="1">
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <title>Movie_hi </title>
+</head>
 
-          ul {
-              list-style: none;
-              display: flex;
-              margin: 0;
-          }
+<body>
+    <style>
+        html {
+            height: 100%;
+        }
+        a {
+            text-decoration: none;
+            color: rgba(255,255,255,10.7) !important;
+        }
 
-          li {
-              display: flex;
-              height: 100%;
-              width: 100px;
-              font-size: 18px;
-              justify-content: center;
-              align-items: center;
-              color: rgba(255,255,255,0.7);
-          }
+        a:active {
+            color: rgba(255,255,255,1.0) !important;
+            text-decoration: none !important;
+        }
 
-          li.active {
-              color: rgba(255,255,255,1.0);
-              font-weight: 600;
-          }
+        a:hover {
+            color: rgba(255,255,255,1.0) !important;
+            text-decoration: none !important;
+        }
 
-          li:hover {
-              font-weight: 600;
-              color: rgba(255,255,255,1.0);
-              cursor: pointer;
-          }
+        body {
+            margin: 0;
+            background-color: #191919;
+            min-width: 600px;
+            height: 100%;
+        }
 
+        nav {
+            background: rgba(0, 0, 0, 0.4);
+            height: 80px;
+            width: 100%;
+            display: flex !important;
+            position: fixed;
+            padding: 0px 50px;
+            z-index: 11;
+        }
 
-          @media all and (max-width: 600px) {
-              .row-item {
-                  width: 33.3333%;
-              }
-          }
-          @media all and (min-width: 600px) and (max-width: 1200px) {
-              .row-item {
-                  width: 25%;
-              }
-          }
+        .logo {
+            display: flex;
+            align-content: center;
+            align-items: center;
+            font-weight: 700;
+            font-size: 23px;
+            width: 190px;
+            height: 100%;
+            box-sizing: border-box;
+            padding: 10px 10px;
+            color: white;
+        }
 
-          section {
-            background-image: url("https://falange.net/wp-content/uploads/2017/06/Vingadores-Avengers.jpg");
-            background-size: cover;
+        ul {
+            list-style: none;
+            display: flex;
+            margin: 0 !important;
+        }
+
+        li {
+            display: flex;
+            height: 100%;
+            width: 100px;
+            font-size: 18px !important;
+            justify-content: center;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.7) !important;
+        }
+
+        li.active {
+            color: rgba(255, 255, 255, 1.0) !important;
+            font-weight: 600 !important;
+        }
+
+        li:hover {
+            font-weight: 600 !important;
+            color: rgba(255, 255, 255, 1.0) !important;
+            cursor: pointer;
+        }
+
+        img {
+            width: 100%;
+        }
+        @media all and (max-width: 600px) {
+            .row-item {
+                width: 33.3333%;
+            }
+        }
+
+        @media all and (min-width: 600px) and (max-width: 1200px) {
+            .row-item {
+                width: 25%;
+            }
+        }
+        #loginbox {
+            z-index: 22;
+        }
+
+        section {
             height: 100%;
             width: 100%;
-            position: absolute;
-            opacity: 0.9;
-            z-index: -1;
-            overflow:scroll;
+            background-image: url("/images/login_bg.jpg");
+            background-size: cover;
+            position: relative;
+            z-index: 3;
+            overflow: scroll;
             color: white;
             padding: 50px 50px;
             display: flex;
             justify-content: space-between;
-          }
-          </style>
-          <header>
-            <nav>
-        			<div class='logo' ><span><div style="width:170px">MOVIE HI - !</div>
-        			<ul>
-        				<li>
-        					<a href="/" style="text-decoration:none; color: white;">홈</a>
-        				</li>
-        				<li><a href="/category" style="text-decoration:none; color: white;">카테고리</a></li>
-        				<li>평가하기</li>
-        				<% if(typeof user!=="undefined") { %>
-        					<li>
-        						<%= user.name %>
-        					</li>
-        					<% } else { %>
-        						<li>
-        							<a href="/auth/login" style="text-decoration:none; color: white; float:right">로그인</a>
-        						</li>
-        					<% } %>
-                </ul>
-              </div>
-        		</nav>
-          </header>
-          <section>
-            <%-body -%>
-          </section>
-        </body>
-      </html>
+        }
+        section:after {
+            content: '';
+            background: rgba(0, 0, 0, 0.55);
+            position: absolute;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            left: 0;
+            height: 100%;
+        }
+    </style>
+    <header>
+        <nav>
+            <span>
+            <div class="logo">
+                <a href='/'><img src="/images/logo.png"></a>
+            </div>
+        </span>
+        </nav>
+    </header>
+    <section>
+        <%-body -%>
+    </section>
+</body>
+
+</html>
