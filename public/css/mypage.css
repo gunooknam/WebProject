@@ -1,4 +1,18 @@
 <style class="cp-pen-styles">@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+nav span {
+    display: flex;
+}
+nav {
+    background: rgba(0, 0, 0, 0.4);
+    height: 80px;
+    width: 100%;
+    display: flex;
+    padding: 0px 50px;
+    z-index: 11;
+    box-sizing: border-box;
+    justify-content: space-between;
+}
+
 *,
 *:before,
 *:after {

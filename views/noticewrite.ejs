@@ -67,16 +67,16 @@ input[type=submit]:hover {
 			</ul>
 	</nav>
           </header>
-      
+
     <article style="padding:20px 16%;">
-        <h2><%=title%></h2>
-<div style="border-radius: 5px;background-color: #f2f2f2;
+        <h2><%= title%></h2>
+<div style="border-radius: 5px; background-color: #f2f2f2;
     padding: 30px; height:400px; font-size:16px; position:relative;" >
   <form method="post" action="/noticewrite" onsubmit="onWriteSubmit()">
     <label> 제 목</label>
 
     <input type="text"  name="title" placeholder="제목을 입력하세요" >
-          
+
     <label> 내 용</label>
     <textarea cols="10" rows="10" name="content"required placeholder="내용을 입력하세요" ></textarea>
 

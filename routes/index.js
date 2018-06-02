@@ -63,7 +63,10 @@ router.get('/category', function (req, res) {
             data.movieList = r;
             res.send(getHtml(<CategoryApp data={data}/>, 'category_bundle'));
         })
-        .catch(e => res.status(500).send(e.sqlMessage));
+        .catch(e => {
+          console.log(e)
+          res.status(500).send(e.sqlMessage)
+        });
 });
               
 router.get('/welcome', function (req, res) {
@@ -75,5 +78,4 @@ router.get('/welcome', function (req, res) {
 
 router._getHtml = getHtml;
 router._query = query;
-
 module.exports = router;

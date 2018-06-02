@@ -67,6 +67,7 @@ module.exports = function(app){
         console.log("여기는 구글 스트렛티지");
         var authId = 'google:' + profile.id;
         var sql = 'SELECT * FROM user WHERE authId=?';
+        console.log(profile);
         conn.query(sql, [authId], function(err, results){
           if(results.length>0){
             return done(null, results[0]);
@@ -79,6 +80,7 @@ module.exports = function(app){
               'image':profile.photos[0].value,
               'gender' :profile.gender
             };
+            console.log(newuser);
             var sql = 'INSERT INTO user SET ?';
             conn.query(sql, newuser, function(err, results){
               if(err){
