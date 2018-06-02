@@ -54,7 +54,7 @@ router.get('/', function (req, res, next) {
 router.get('/category', function (req, res) {
     const data = {};
     if(req.user) data.user = req.user;
-    query(`SELECT * FROM genre;`)
+    query(`SELECT * FROM movie;`)
         .then(r=> {
             data.genreList = [{id: -1, genre: "모든 장르"}, ...r];
             return query(`SELECT * FROM movie ORDER BY vote_average DESC LIMIT 70`);
@@ -68,7 +68,7 @@ router.get('/category', function (req, res) {
           res.status(500).send(e.sqlMessage)
         });
 });
-
+              
 router.get('/welcome', function (req, res) {
     console.log(req.user); //deserializeUser 함수가 페이지 넘어갈 때 마다 실행되면서 req.user에 내용을 채운다.
     res.render('welcome', { // req.user에 내용이 있으면 현재 세션정보가 있으므로 로그인중이고, 없으면 로그인 중이지 않음

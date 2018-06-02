@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <style>
+input[type=text], textarea {
+    width: 95%;
+    padding: 12px 20px;
+    margin: 8px 0px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size:16px;
+
+
+}
+input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size:16px;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+    </style>
+      <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+      <script>
+        function onWriteSubmit() {
+            alert("작성되었습니다.");
+        }
+    </script>
+  </head>
+  <body>
+      <header>
+            <nav>
+		<span>
+		<div class='logo'>MOVIE HI - !</div>
+		<ul>
+			<li>
+				<a href="/" style="text-decoration:none; color: white;">홈</a>
+			</li>
+			<li><a href="/category" style="text-decoration:none; color: white;">카테고리</a></li>
+			<li>평가하기</li>
+		</ul>
+	</span>
+	<span>
+			<ul>
+			<% if(user) { %>
+				<li>
+					<%= user.nickname %>
+				</li>
+				<% } else { %>
+					<li>
+						<a href="/auth/login" style="text-decoration:none; color: white;">로그인</a>
+					</li>
+					<% } %>
+				</span>
+			</ul>
+	</nav>
+          </header>
+
+    <article style="padding:20px 16%;">
+        <h2><%= title%></h2>
+<div style="border-radius: 5px; background-color: #f2f2f2;
+    padding: 30px; height:400px; font-size:16px; position:relative;" >
+  <form method="post" action="/noticewrite" onsubmit="onWriteSubmit()">
+    <label> 제 목</label>
+
+    <input type="text"  name="title" placeholder="제목을 입력하세요" >
+
+    <label> 내 용</label>
+    <textarea cols="10" rows="10" name="content"required placeholder="내용을 입력하세요" ></textarea>
+
+    <input type="submit" value="등 록">
+  </form>
+</div>
+
+    </article>
+<!-- Footer -->
+	<footer>
+		<div class="footer__links">
+			<a href="#">무하 서비스 이용약관</a>
+			<span>   |   </span>
+			<a href="#" class="privacy">개인정보 취급방침</a>
+			<span>   |   </span>
+			<a class="" href="/help">고객센터</a>
+			<span>   |   </span>
+			<a href="http://frograms.com/joinus" target="_blank">채용정보</a>
+		</div>
+		<div class="footer__contact-info" data-reactid=".2dgluquabr4.6.1">
+			<div class="footer__contact" data-reactid=".2dgluquabr4.6.1.0">
+				<div class="footer__contact-title" data-reactid=".2dgluquabr4.6.1.0.0">고객센터(이용 및 결제 문의)</div>
+				<div class="footer__contact-desc" data-reactid=".2dgluquabr4.6.1.0.1">
+					<a href="mailto:cs@watchaplay.net" data-reactid=".2dgluquabr4.6.1.0.1.0">cs@watchaplay.net</a>
+					<span data-reactid=".2dgluquabr4.6.1.0.1.1"> / 02-515-9985(유료)</span>
+				</div>
+			</div>
+			<div class="footer__contact" data-reactid=".2dgluquabr4.6.1.1">
+				<div class="footer__contact-title" data-reactid=".2dgluquabr4.6.1.1.0">제휴 및 대외 협력</div>
+				<div class="footer__contact-desc" data-reactid=".2dgluquabr4.6.1.1.1">
+					<a href="mailto:contact@watcha.com" data-reactid=".2dgluquabr4.6.1.1.1.0">contact@watcha.com</a>
+					<span data-reactid=".2dgluquabr4.6.1.1.1.1"> / 070-7554-9696 (유료)</span>
+				</div>
+			</div>
+		</div>
+	</footer>
+  </body>
+</html>

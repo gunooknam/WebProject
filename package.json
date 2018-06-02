@@ -9,6 +9,7 @@
     "ssr_w": "webpack && node server.js"
   },
   "dependencies": {
+    "alert-node": "^1.2.1",
     "async": "^2.6.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",

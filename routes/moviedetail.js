@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
 	  const id = req.query.id;
 	  const purchased = false;
 
-	  connection.query(`SELECT * FROM movie JOIN director ON movie.director_id = director.id WHERE movie.id=${id}`, function(err, rows) {
+	  connection.query(`SELECT * , movie.id as movie_id FROM movie JOIN director ON movie.director_id = director.id WHERE movie.id=${id}`, function(err, rows) {
 		  if (err) console.error("err:" + err);
 		  //console.log("rows: " +JSON.stringify(rows));
 			connection.query(`SELECT * FROM review WHERE movieId=${id}`, function(err, review) {
@@ -28,6 +28,7 @@ router.get('/', function(req, res, next) {
 				 res.render('moviedetail', {title: 'moviedetail', rows: rows, user:req.user, review : review, purchased});
 			 });
 		});
+        console.log("req.user:"+ req.user);
 });
 
 router.post('/review', function(req,res){

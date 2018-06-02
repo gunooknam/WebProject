@@ -18,6 +18,20 @@
 	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.0.min.js" ></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<link rel="stylesheet" href="/stylesheets/style.css" />
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.7.1.js"></script>
+    <script type="text/javascript" language="javaScript">
+        function wish_event_logout(){
+            alert('로그인을 해주세요.');
+        }
+        function wishadd_event_login(movie_id){
+            alert('찜목록에 추가');
+            location.href="/wishadd?movie_id=" + movie_id;
+        }
+        function wishdel_event_login(movie_id){
+            alert('찜목록에서 삭제');
+            location.href="/wishdel?movie_id=" + movie_id;
+        }
+    </script>
 </head>
 <style>
 .animated {
@@ -131,29 +145,37 @@ $(function(){
 				<h4>
 					<%= rows[0].description %>
 				</h4>
-
 				<div style="width:100%; float:left;">
-					<div style="width:50%; float:left;">
-						<button class='likes' type="submit" onclick="alert('wish list에 추가')">
-							<div style="width:40%; float:left;">
-								<img src="https://cdn3.iconfinder.com/data/icons/facebook-ui-flat/48/Facebook_UI-35-128.png" width=100% align: "middle">
+							<div style="width:50%; float:left;">
+							<% if(user) { %>
+			                    <button class='likes' type="submit" onclick="wishadd_event_login(<%= rows[0].movie_id%>)">
+			                <% } else { %>
+			                    <button class='likes' type="submit" onclick="wish_event_logout(<%= rows[0].movie_id%>)">
+			                <% } %>
+									<div style="width:40%; float:left;">
+										<img src="https://cdn3.iconfinder.com/data/icons/facebook-ui-flat/48/Facebook_UI-35-128.png" width=100% align: "middle">
+									</div>
+									<div style="width:60%; float:left;">
+										<h3>보고싶어요</h3>
+									</div>
+								</button>
 							</div>
-							<div style="width:60%; float:left;">
-								<h3>보고싶어요</h3>
+							<div style="width:50%; float:left;">
+							<% if(user) { %>
+			                    <button class='likes' type="submit" onclick="wishdel_event_login(<%= rows[0].movie_id%>)">
+			                <% } else { %>
+			                    <button class='likes' type="submit" onclick="wish_event_logout(<%= rows[0].movie_id%>)">
+			                <% } %>
+									<div style="width:40%; float:left;">
+										<img src="https://cdn3.iconfinder.com/data/icons/facebook-ui-flat/48/Facebook_UI-38-128.png" width=100% align: "middle">
+									</div>
+									<div style="width:60%; float:left;">
+										<h3>관심없어요</h3>
+									</div>
+								</button>
 							</div>
-						</button>
-					</div>
-					<div style="width:50%; float:left;">
-						<button class='likes' type="submit" onclick="alert('wish list에서 삭제')">
-							<div style="width:40%; float:left;">
-								<img src="https://cdn3.iconfinder.com/data/icons/facebook-ui-flat/48/Facebook_UI-38-128.png" width=100% align: "middle">
-							</div>
-							<div style="width:60%; float:left;">
-								<h3>관심없어요</h3>
-							</div>
-						</button>
-					</div>
 				</div>
+
 				<button class='purchase' onclick="purchase()"><%= purchased ? '시청하기' : '구매하기' %></button>
 			</div>
 			<div class="poster">
@@ -161,7 +183,6 @@ $(function(){
 				 allowfullscreen></iframe>
 			</div>
 		</section>
-
 <script>
 	const purchase = () => {
 		fetch('/api/purchase', { method: 'POST' })
