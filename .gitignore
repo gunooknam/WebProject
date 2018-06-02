@@ -10,3 +10,4 @@ public/adminMain_bundle.js
 public/wishlist_bundle.js
 public/*hot-update*
 public/images/*
+!public/images/logo.png

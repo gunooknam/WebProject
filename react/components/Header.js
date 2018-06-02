@@ -11,10 +11,6 @@ const Header = ({ activeIndex, user }) => {
             link: '/category',
         },
         {
-            title: '평가하기',
-            link: '/evaluate',
-        },
-        {
             title: '찜목록',
             link: '/wishlist',
         },
@@ -30,7 +26,7 @@ const Header = ({ activeIndex, user }) => {
     return (
         <nav>
             <span>
-                <div className='logo'><span>MOVIE HI - !</span></div>
+                <div className='logo'><img src='/images/logo.png' /></div>
                 <ul>
                     {links.map((item, index) => {
                         return <li key={index} className={index === activeIndex ? 'active' : ''}><a href={item.link}>{item.title}</a></li>
