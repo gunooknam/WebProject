@@ -24,7 +24,7 @@ module.exports = function(passport){
      passport.authenticate(
       'google',
       {
-        successRedirect: '/welcome',
+        successRedirect: '/',
         failureRedirect: '/auth/login',
         failureFlash: false
       }
@@ -35,7 +35,7 @@ module.exports = function(passport){
     passport.authenticate(
       'local',
        {
-        successRedirect: '/welcome',
+        successRedirect: '/',
         failureRedirect: '/auth/login',
         failureFlash: false
        }

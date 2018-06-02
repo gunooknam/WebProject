@@ -86,88 +86,92 @@ $(function(){
 </script>
 <body>
 	<!-- Header -->
-
-	<nav class="navbar navbar-default" style="background-color:black; border-color: black; display: flex;">
-	<div class='logo'>MOVIE HI - !</div>
-
-		<ul style="align-item:center">
-			<li>
-				<a href="/" style="text-decoration:none; color: white;">홈</a>
-			</li>
-			<li>카테고리</li>
-			<li>평가하기</li>
-		<input id="user" name="user" style="display:none" value="<%= user %>">
-			<% if( typeof user !== "undefined") { %>
-				<input id="vuser" name="vuser" style="display:none" value="<%= user.authId %>">
-					<li class="nav navbar-nav navbar-left">
-						<ul  style="margin-left:50%">
-							<a href="/"  class="dropdown-toggle" data-toggle="dropdown" role="button"
-										 style="color: white; text-decoration: none;"> <%= user.nickname %> <span class="caret"></span></a>
-									<ul class="dropdown-menu">
-												<li><a href="/users">마이페이지</a></li>
-													<li><a href="#">고객센터</a></li>
-														<li><a href="/auth/logout">로그아웃</a></li>
-															<li><a href="#">찜목록</a></li>
-									</ul>
-								</ul>
-					</li>
-				<% } else { %>
+	<!-- Header -->
+		<nav>
+			<span>
+			<div class='logo'>MOVIE HI - !</div>
+			<ul>
+				<li>
+					<a href="/" style="text-decoration:none; color: white;">홈</a>
+				</li>
+				<li><a href="/category" style="text-decoration:none; color: white;">카테고리</a></li>
+				<li>평가하기</li>
+			</ul>
+		</span>
+		<span>
+				<ul>
+				<% if(user) { %>
 					<li>
-						<a href="/auth/login" style="text-decoration:none; color: white;">로그인</a>
+						<%= user.name %>
 					</li>
-			<% } %>
-		</ul>
+					<% } else { %>
+						<li>
+							<a href="/auth/login" style="text-decoration:none; color: white;">로그인</a>
+						</li>
+						<% } %>
+					</span>
+				</ul>
+		</nav>
 
-	</nav>
-	<!-- Content -->
-	<section>
-		<div class="article">
-			<h1>
-				<%= rows[0].title %>
-			</h1>
-			<h4>
-				<%= rows[0].original_title %>
-			</h4>
-			<hr color="gray" size="1">
-			<p>감독:
-				<%= rows[0].name %>   |
-					<%= rows[0].runtime %>분   |
-						 5,000 원</p>
-			<hr color="gray" size="1">
-			<h4>
-				<%= rows[0].description %>
-			</h4>
+		<!-- Content -->
+		<section>
+			<div class="article">
+				<h1>
+					<%= rows[0].title %>
+				</h1>
+				<h4>
+					<%= rows[0].original_title %>
+				</h4>
+				<hr color="gray" size="1">
+				<p>감독:
+					<%= rows[0].name %>   |
+						<%= rows[0].runtime %>분   |
+							 2,000 원</p>
+				<hr color="gray" size="1">
+				<h4>
+					<%= rows[0].description %>
+				</h4>
 
-			<div style="width:100%; float:left;">
-				<div style="width:50%; float:left;">
-					<button class='likes' type="submit" onclick="alert('wish list에 추가')">
-						<div style="width:40%; float:left;">
-							<img src="https://cdn3.iconfinder.com/data/icons/facebook-ui-flat/48/Facebook_UI-35-128.png" width=100% align: "middle">
-						</div>
-						<div style="width:60%; float:left;">
-							<h3>보고싶어요</h3>
-						</div>
-					</button>
+				<div style="width:100%; float:left;">
+					<div style="width:50%; float:left;">
+						<button class='likes' type="submit" onclick="alert('wish list에 추가')">
+							<div style="width:40%; float:left;">
+								<img src="https://cdn3.iconfinder.com/data/icons/facebook-ui-flat/48/Facebook_UI-35-128.png" width=100% align: "middle">
+							</div>
+							<div style="width:60%; float:left;">
+								<h3>보고싶어요</h3>
+							</div>
+						</button>
+					</div>
+					<div style="width:50%; float:left;">
+						<button class='likes' type="submit" onclick="alert('wish list에서 삭제')">
+							<div style="width:40%; float:left;">
+								<img src="https://cdn3.iconfinder.com/data/icons/facebook-ui-flat/48/Facebook_UI-38-128.png" width=100% align: "middle">
+							</div>
+							<div style="width:60%; float:left;">
+								<h3>관심없어요</h3>
+							</div>
+						</button>
+					</div>
 				</div>
-				<div style="width:50%; float:left;">
-					<button class='likes' type="submit" onclick="alert('wish list에서 삭제')">
-						<div style="width:40%; float:left;">
-							<img src="https://cdn3.iconfinder.com/data/icons/facebook-ui-flat/48/Facebook_UI-38-128.png" width=100% align: "middle">
-						</div>
-						<div style="width:60%; float:left;">
-							<h3>관심없어요</h3>
-						</div>
-					</button>
-				</div>
+				<button class='purchase' onclick="purchase()"><%= purchased ? '시청하기' : '구매하기' %></button>
 			</div>
-			<button class='purchase'>구매하기</button>
-		</div>
-		<div class="poster" style="margin-left:20%; width:300px;height:300px">
-			<iframe class='video' src="https://www.youtube.com/embed/<%= rows[0].youtube %>" frameborder="0" allow="autoplay; encrypted-media"
-			 allowfullscreen></iframe>
-		</div>
-	</section>
+			<div class="poster">
+				<iframe class='video' src="https://www.youtube.com/embed/<%= rows[0].youtube %>" frameborder="0" allow="autoplay; encrypted-media"
+				 allowfullscreen></iframe>
+			</div>
+		</section>
 
+<script>
+	const purchase = () => {
+		fetch('/api/purchase', { method: 'POST' })
+			.then(r => r.text())
+			.then(r => {
+				if (r=='true') confirm('구매 완료되었습니다. 지금 시청하실래요?') ? document.location.href = '/moviedetail/watch' : false;
+				else alert('잔액이 부족합니다.');
+			});
+	}
+</script>
 
 	<div class="review" style="margin-left:2%">
 		<div class="row" style="margin-top:30px; width:120%">
@@ -222,16 +226,13 @@ $(function(){
 				  	<%
 								}
 						%>
-						<ul class="pager" style="float:right">
-						  <li><a href="#" onclick=prev()>Previous</a></li>
-						  <li><a href="#" onclick=next()>Next</a></li>
-						</ul>
 					 <%
 						}
 				 		%>
 			</div>
 		</div>
 	</div>
+
 	<!-- Footer -->
 	<footer>
 		<div class="footer__links">
@@ -262,7 +263,6 @@ $(function(){
 	</footer>
 </body>
 <script>
-
 function usercheck(){
 	if( $("#user").val() === "undefined" ){
 		alert("로그인을 해야 이용할 수 있는 서비스 입니다.");
@@ -281,7 +281,6 @@ function vailduser(){
 	else{
 		//var review = <%-JSON.stringify(review)%>;
 	}
-
 	var pass = prompt("비밀번호를 입력하세요.","여기가 비밀번호를 입력하는 text box입니다");
 	if($("#vuser").val() === $("#replyauthId").val() && (pass===$("#replypasswd").val())){
 		return true;
@@ -290,7 +289,5 @@ function vailduser(){
 		alert("틀립니다 비번이");
 	return false;
 }
-
-
 </script>
 </html>

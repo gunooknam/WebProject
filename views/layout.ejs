@@ -12,11 +12,10 @@
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
           <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
           <meta name="viewport" content="width=device-width", initial-scale="1">
+          <link rel="stylesheet" href="/stylesheets/style.css" />
           <title>Movie_hi </title>
-          <%-scripts%>
-          <%-stylesheets%>
-        </head>
-        <body>
+          </head>
+          <body>
           <style>
           a:link  { text-decoration: none; color: #5E5E5E}
           a:visited {  text-decoration: none; color: #5E5E5E}
@@ -27,7 +26,6 @@
               background-color: #191919;
               min-width: 600px;
           }
-
           nav {
               background: rgba(0, 0, 0, 0.4);
               height: 80px;
@@ -44,6 +42,7 @@
               align-items: center;
               font-weight: 700;
               font-size: 23px;
+              width: 100px;
               height: 100%;
               box-sizing: border-box;
               padding: 10px 10px;
@@ -77,59 +76,6 @@
               cursor: pointer;
           }
 
-          .title {
-              font-size: 3.8vw;
-              font-weight: 600;
-              margin-bottom: 35px;
-          }
-
-          .year {
-              font-size: 1.8vw;
-              margin-right: 30px;
-              color: rgba(255,255,255,0.7);
-              font-weight: bold;
-          }
-
-          .running {
-              color: rgba(255,255,255,0.7);
-              font-size: 1.8vw;
-
-          }
-
-          .info {
-              margin-bottom: 20px;
-          }
-
-          .summary {
-              font-size: 1.3vw;
-              color: white;
-              font-weight: 600;
-          }
-
-          .description {
-              position: absolute;
-              left: 0;
-              top: 0.9vw;
-              color: white;
-              padding: 18vw 0 0 14vw;
-              z-index: 2;
-              width: 55vw;
-          }
-          .main-bg {
-              width: 100%;
-              position: relative;
-          }
-
-          .main-bg img {
-              width: 100%;
-              object-fit: fill;
-              background-color: black;
-          }
-
-          svg:hover {
-              color: white !important;
-          }
-
 
           @media all and (max-width: 600px) {
               .row-item {
@@ -141,16 +87,7 @@
                   width: 25%;
               }
           }
-          @media all and (min-width: 1200px) and (max-width: 1600px) {
-              .row-item {
-                  width: 20%;
-               }
-          }
-          @media all and (min-width: 1600px) {
-              .row-item {
-                  width: 16.6667%;
-              }
-          }
+
           section {
             background-image: url("https://falange.net/wp-content/uploads/2017/06/Vingadores-Avengers.jpg");
             background-size: cover;
@@ -160,28 +97,36 @@
             opacity: 0.9;
             z-index: -1;
             overflow:scroll;
+            color: white;
+            padding: 50px 50px;
+            display: flex;
+            justify-content: space-between;
           }
           </style>
           <header>
             <nav>
-                <div class='logo'><span>MOVIE HI - !</span>
-                    <ul>
-                      <li class='active' style="margin-left:20%"><a href="/" style="text-decoration:none; color: white;">홈</a></li>
-                      <li>카테고리</li>
-                      <li>평가하기</li>
-                      <% if( typeof user !== "undefined") { %>
-                      <li style="margin-bottom: 10px" ><%= user.nickname %><a href="/auth/logout"> logout?</a></li>
-                      <% } else { %>
-                      <li><a href="/auth/login" style="text-decoration:none; color: white;">로그인</a></li>
-                      <% } %>
-                    </ul
-              ></div>
-            </nav>
+        			<div class='logo' ><span><div style="width:170px">MOVIE HI - !</div>
+        			<ul>
+        				<li>
+        					<a href="/" style="text-decoration:none; color: white;">홈</a>
+        				</li>
+        				<li><a href="/category" style="text-decoration:none; color: white;">카테고리</a></li>
+        				<li>평가하기</li>
+        				<% if(typeof user!=="undefined") { %>
+        					<li>
+        						<%= user.name %>
+        					</li>
+        					<% } else { %>
+        						<li>
+        							<a href="/auth/login" style="text-decoration:none; color: white; float:right">로그인</a>
+        						</li>
+        					<% } %>
+                </ul>
+              </div>
+        		</nav>
           </header>
           <section>
             <%-body -%>
           </section>
-          <footer>
-        </footer>
         </body>
       </html>
