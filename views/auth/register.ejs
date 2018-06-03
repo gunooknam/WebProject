@@ -27,7 +27,7 @@
                 <div class="panel panel-info" style="background-color: transparent; ">
                     <div class="panel-heading" style="background-color: transparent;">
                         <div class="panel-title" style="background-color: transparent; color: white; font-weight: 700;">회원가입 <i class="glyphicon glyphicon-edit"></i></div>
-                        <div style="float:right; font-size: 80%; position: relative; top:-10px ; "><a href="/auth/passwdfind" style="color: white;">비밀번호 찾기</a></div>
+                        <div style="float:right; font-size: 80%; position: relative; top:-10px ; "><a href="/auth/passwdfind" style="color: white; font-weight: 700;">비밀번호 찾기</a></div>
                     </div>
                     <div style="padding-top:25px" class="panel-body" >
                         <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
@@ -71,10 +71,15 @@
                                 </label>
                             </div>
                             <br>
-                            <div class="form-group  ">
+                            <div class="form-group">
                                 <div >
-                                    <input type='submit' id="btn-login" class="btn btn-lg btn-success btn-block"  value="회원가입" onclick="return btnmail()"></input>
+                                    <input type='submit' id="btn-login" class="btn btn-success btn-block" value="회원가입" onclick="return btnmail()"></input>
                                 </div>
+                            </div>
+                            <div class="form-group">
+                                <button  class="btn btn-primary btn-block" >
+                                  <a href="/auth/login">로그인</a>
+                                </button>
                             </div>
                         </form>
                     </div>

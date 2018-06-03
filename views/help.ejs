@@ -8,14 +8,14 @@
           a:link  { text-decoration: none; color: #5E5E5E}
           a:visited {  text-decoration: none; color: #5E5E5E}
           a:active {  text-decoration: none; color: #5E5E5E}
-         
+
           /*a:hover { text-decoration: underline; color:#F36798}*/
           li { font-weight:normal }
         .click { font-weight:bold}
           .button {
                 box-shadow: inset 0 0 0 3px #6cc091;
                 border-radius: 30px;
-                
+
                 display: inline-block;
                 font-size: .75em;
                 font-weight: 400;
@@ -27,44 +27,44 @@
                background-color: #6cc091;
                 color: #ffffff !important;
             }
-           .button:hover { 
-               text-decoration: none; 
+           .button:hover {
+               text-decoration: none;
                background-color:#ffffff ;
                 color:#6cc091  !important;
 
             }
     </style>
       <script type= "text/javascript" src="/javascripts/FAQ.js"></script>
-      <script type="text/javascript" src="//code.jquery.com/jquery-1.7.1.js"></script> 
-      <script type="text/javascript"> 
+      <script type="text/javascript" src="//code.jquery.com/jquery-1.7.1.js"></script>
+      <script type="text/javascript">
             var i = 0;
             function toggle_object(post_id)
-            {   
+            {
                 i = i + post_id;
-                var obj = document.getElementById('test');   
-                if(!obj) return;   
+                var obj = document.getElementById('test');
+                if(!obj) return;
 
                 if(i%2!=0)
-                {   
+                {
                     obj.src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-up-01-128.png"; //클릭시보여줄이미지
 
-                } 
-                else 
-                {   
+                }
+                else
+                {
                     obj.src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-down-01-128.png";//처음보여줄이미지
                 }
             }
-            
-            var bDisplay = true; 
-            function doDisplay(){ 
+
+            var bDisplay = true;
+            function doDisplay(){
                 var con = document.getElementById("myDIV");
-                if(con.style.display=='none'){ 
-                    con.style.display = 'block'; 
-                }else{ 
-                    con.style.display = 'none'; 
-                } 
+                if(con.style.display=='none'){
+                    con.style.display = 'block';
+                }else{
+                    con.style.display = 'none';
+                }
             }
-          
+
             $(window).load(function(){
         $("#FAQMenu #first").css("font-weight","bold");
         $("#FAQMenu li").click(function(e) {
@@ -73,26 +73,26 @@
             $(this).addClass("click");
             e.stopPropagation();
         });
-         
+
        $("#FAQMenu #first").click(function(e) {
-            $("#FAQMenu li.click").removeClass("click"); 
+            $("#FAQMenu li.click").removeClass("click");
            $("#FAQMenu #first").css("font-weight","bold");
             e.stopPropagation();
         });
     });
-          
+
           function delete_button_event(id){
               //console.log("delete_button_event 내 id", id);
                 if (confirm("이 글을 삭제하시겠습니까?") == true){    //확인
                      alert("삭제되었습니다.");
-                    location.href="/noticeremove/"+id; 
+                    location.href="/noticeremove/"+id;
                 }else{   //취소
                     alert("취소되었습니다.");
                     return;
                 }
             }
-          
-        </script> 
+
+        </script>
   </head>
   <body>
       <header>
@@ -139,11 +139,11 @@
         <br><br><hr>
           <form>
           <% for(var i=0; i<rows.length; i++) {%>
-              <div><br>  
+              <div><br>
                  <span style="font-weight:bold; "><%= rows[i].title %></span>
-                <a onclick="this.nextSibling.style.display=(this.nextSibling.style.display=='none')?'block':'none';" href="javascript:void(0)"> 
+                <a onclick="this.nextSibling.style.display=(this.nextSibling.style.display=='none')?'block':'none';" href="javascript:void(0)">
                     <span style="float:right"><img src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-down-01-128.png"  onmouseover="this.src='https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-up-01-128.png'"  onmouseout="this.src='https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-down-01-128.png'" width="50px"/></span>
-              
+
                 <div style="DISPLAY: none">
                     <br><br><hr  style="height:3.5px;">
                     <div style=" float:right; width:100%;">
@@ -155,15 +155,15 @@
                     <div style="">
                         <span> <%=rows[i].content%> </span>
                     </div>
-                </a></div> 
-                <br><br><br> 
-                <hr>       
+                </a></div>
+                <br><br><br>
+                <hr>
             </div>
-              
+
         <% } %>
               <div><br>
-                <span style="font-weight:bold; ">5월 4주 새로 올라온 작품</span>    
-                <a onclick="this.nextSibling.style.display=(this.nextSibling.style.display=='none')?'block':'none';" href="javascript:void(0)"> 
+                <span style="font-weight:bold; ">5월 4주 새로 올라온 작품</span>
+                <a onclick="this.nextSibling.style.display=(this.nextSibling.style.display=='none')?'block':'none';" href="javascript:void(0)">
                     <span style="float:right"><img src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-down-01-128.png"  onmouseover="this.src='https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-up-01-128.png'"  onmouseout="this.src='https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-down-01-128.png'" width="50px"/></span>
                 <div style="DISPLAY: none">
                     <br><br><br><hr  style="height:3.5px;">
@@ -174,7 +174,7 @@
                         <%} }%>
                     </div>
                     <div>
-                    <span> 
+                    <span>
                         이번 주에도 왓챠플레이와 함께 하실 수 있도록 새로운 작품을 준비했어요.<br/>
                         어떤 작품들이 추가되었는지 확인해보세요. 두근두근!<br/><br/>
 
@@ -194,20 +194,20 @@
                         <strong>최근 한 달간 새로 올라온 작품</strong><br/>
                         &lt;리얼&gt;, &lt;노무현입니다&gt;, &lt;더 와이어 전 시즌&gt;, &lt;보드워크 엠파이어 전 시즌&gt;, &lt;안녕, 프란체스카 전 시즌&gt;, &lt;태릉선수촌&gt;, &lt;극장판 카드캡터 사쿠라 - 마법의 카드&gt;, &lt;원피스 15기 : 마린포드 PART2&gt;, &lt;슬램덩크&gt;, &lt;픽셀&gt;, &lt;나쁜 녀석들 2&gt;, &lt;몬스터 호텔 2&gt;, &lt;플란다스의 개&gt;, &lt;톰 소여의 모험&gt;, &lt;엄마찾아 삼만리&gt;, &lt;나, 다니엘 블레이크&gt;, &lt;스포트라이트&gt;, &lt;제너레이션 킬&gt;, &lt;트루블러드 전 시즌&gt;, &lt;타이페이 카페 스토리&gt;, &lt;청년경찰&gt; 등<br/>
                         <span style="text-decoration: underline;"> 총 영화 144편, TV시리즈 115편(에피소드 2402개)</span><br/><br/>
-                        
+
                         여러분이 좋아할 만한 작품, 매주 열심히 찾고 있어요.<br/>
                         더 좋은 신작으로 찾아 올게요 :)<br/>
 
                         왓챠플레이 팀 드림<br/>
                     </span>
                     </div>
-                </a></div> 
-                <br><br><br> 
-                <hr>       
+                </a></div>
+                <br><br><br>
+                <hr>
             </div>
             <div><br>
-                <span style="font-weight:bold; ">5월까지 감상가능한 컨텐츠</span>    
-                <a onclick="this.nextSibling.style.display=(this.nextSibling.style.display=='none')?'block':'none';" href="javascript:void(0)"> 
+                <span style="font-weight:bold; ">5월까지 감상가능한 컨텐츠</span>
+                <a onclick="this.nextSibling.style.display=(this.nextSibling.style.display=='none')?'block':'none';" href="javascript:void(0)">
                     <span style="float:right"><img src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-down-01-128.png"  onmouseover="this.src='https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-up-01-128.png'"  onmouseout="this.src='https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-down-01-128.png'" width="50px"/></span>
                 <div style="DISPLAY: none">
                     <br><br><br><hr  style="height:3.5px;">
@@ -218,7 +218,7 @@
                         <% } } %>
                     </div>
                     <div>
-                    <span> 
+                    <span>
                         왓챠플레이에 콘텐츠를 제공하는 권리사의 요청으로 안타깝게도 각 종료일까지 왓챠플레이에서 볼 수 있는 컨텐츠들입니다.<br/>
                         더 좋은 콘텐츠로 서비스할 수 있도록 계속 노력하겠습니다.<br/><br/>
 
@@ -305,11 +305,11 @@
                         스파르타쿠스 3 : 최후의 전쟁(2013)<br/>
                     </span>
                     </div>
-                </a></div> 
-                <br><br><br> 
-                <hr>       
-            </div>  
-              
+                </a></div>
+                <br><br><br>
+                <hr>
+            </div>
+
                </form>
             <h1 style="color:#191919;"><br><br>FAQ</h1>
       <hr style="height:3.5px;">
@@ -328,7 +328,7 @@
           <div>
             <span >Q. </span>
             <span>쿠폰이 등록되지 않아요. </span>
-            <a onclick="this.nextSibling.style.display=(this.nextSibling.style.display=='none')?'block':'none';" href="javascript:void(0)"> 
+            <a onclick="this.nextSibling.style.display=(this.nextSibling.style.display=='none')?'block':'none';" href="javascript:void(0)">
                     <span style="float:right"><img src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-down-01-128.png"  onmouseover="this.src='https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-up-01-128.png'"  onmouseout="this.src='https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-down-01-128.png'" width="50px"/></span>
             <div style="DISPLAY: none">
                 <br><br><hr>
@@ -355,7 +355,7 @@
         <div>
             <span>Q. </span>
             <span>해지는 어떻게 하나요? </span>
-            <a onclick="this.nextSibling.style.display=(this.nextSibling.style.display=='none')?'block':'none';" href="javascript:void(0)"> 
+            <a onclick="this.nextSibling.style.display=(this.nextSibling.style.display=='none')?'block':'none';" href="javascript:void(0)">
                     <span style="float:right"><img src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-down-01-128.png"  onmouseover="this.src='https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-up-01-128.png'"  onmouseout="this.src='https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-down-01-128.png'" width="50px"/></span>
             <div style="DISPLAY: none">
                 <br><br><hr>
@@ -379,19 +379,19 @@
             </a></div>
             </div>
         <br><br><hr>
-        <div>  
+        <div>
             <span>Q. </span>
             <span>무비하이의 예상별점과 추천의 원리는 무엇인가요? </span>
-            <a onclick="this.nextSibling.style.display=(this.nextSibling.style.display=='none')?'block':'none';" href="javascript:void(0)"> 
+            <a onclick="this.nextSibling.style.display=(this.nextSibling.style.display=='none')?'block':'none';" href="javascript:void(0)">
                     <span style="float:right"><img src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-down-01-128.png"  onmouseover="this.src='https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-up-01-128.png'"  onmouseout="this.src='https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-down-01-128.png'" width="50px"/></span>
             <div style="DISPLAY: none">
                 <br><br><hr>
                     무비하이는 무하에서 쌓은 데이터를 활용해 영화와 드라마를 추천해 드려요!<br><br>
-                    1. 먼저, 내가 매긴 별점을 통해 취향이 비슷한 사람을 찾습니다. 누구나 영화나 드라마를 볼 때 자기만의 중요한 기준이 있습니다. 예를 들면, "난 영상미나 음악이 중요해… 아니야 스토리가 갑이지… 에이 영화는 연기 보는 맛이야…" 같은 것이죠. 결국 나도 모르게 이 기준에 따라 별점을 주게 되고, 따라서 내가 매긴 별점들을 쭈욱 분석하면 내가 중요하게 생각하는 기준, 나만의 성향을 분석할 수가 있습니다. 그리고 이렇게 분석한 성향을 서로 서로 비교하면, 아주 비슷한 성향을 가진 사람들을 찾을 수 있겠죠. 이 사람들이 바로 나와 취향이 비슷한 사람들입니다.<br><br> 
+                    1. 먼저, 내가 매긴 별점을 통해 취향이 비슷한 사람을 찾습니다. 누구나 영화나 드라마를 볼 때 자기만의 중요한 기준이 있습니다. 예를 들면, "난 영상미나 음악이 중요해… 아니야 스토리가 갑이지… 에이 영화는 연기 보는 맛이야…" 같은 것이죠. 결국 나도 모르게 이 기준에 따라 별점을 주게 되고, 따라서 내가 매긴 별점들을 쭈욱 분석하면 내가 중요하게 생각하는 기준, 나만의 성향을 분석할 수가 있습니다. 그리고 이렇게 분석한 성향을 서로 서로 비교하면, 아주 비슷한 성향을 가진 사람들을 찾을 수 있겠죠. 이 사람들이 바로 나와 취향이 비슷한 사람들입니다.<br><br>
 
-                    2. 이렇게 내 취향과 비슷한 사람들이 매긴 평가를 모아서 작품 별로 "내 예상별점"을 만듭니다. 나와 취향이 비슷한 사람들이 개별 작품에 매긴 점수는, 아마도 내가 실제로 매길 점수와 아주 아주 유사할겁니다. 즉 보지 않았더라도 이 사람들이 매긴 점수를 보면, 내가 이 작품에 몇 점을 줄지 미리 알 수가 있는 것이죠. 무하는 나와 취향이 비슷한 사람들의 평가를 종합해서, 자동으로 작품 별 "내 예상별점"을 계산하고 즉시 보여줍니다.<br><br> 
+                    2. 이렇게 내 취향과 비슷한 사람들이 매긴 평가를 모아서 작품 별로 "내 예상별점"을 만듭니다. 나와 취향이 비슷한 사람들이 개별 작품에 매긴 점수는, 아마도 내가 실제로 매길 점수와 아주 아주 유사할겁니다. 즉 보지 않았더라도 이 사람들이 매긴 점수를 보면, 내가 이 작품에 몇 점을 줄지 미리 알 수가 있는 것이죠. 무하는 나와 취향이 비슷한 사람들의 평가를 종합해서, 자동으로 작품 별 "내 예상별점"을 계산하고 즉시 보여줍니다.<br><br>
 
-                    3. "내 예상별점"이 높은 작품들을 추천합니다 이렇게 계산된 예상별점이 "3점 후반대 ~ 5점"에 가까운 영화들은 내가 재미있게 즐길 확률이 높습니다. 따라서 이런 작품들을 나에게 추천하되, 만약 내가 좋아하는 감독이나 장르에 해당한다면 가산점을 줘서 더 먼저 추천합니다.<br><br> 
+                    3. "내 예상별점"이 높은 작품들을 추천합니다 이렇게 계산된 예상별점이 "3점 후반대 ~ 5점"에 가까운 영화들은 내가 재미있게 즐길 확률이 높습니다. 따라서 이런 작품들을 나에게 추천하되, 만약 내가 좋아하는 감독이나 장르에 해당한다면 가산점을 줘서 더 먼저 추천합니다.<br><br>
 
                     어때요? 참 쉽죠! 물론 이건 말로 간단히 풀어 설명한 것이고, 실제 위의 1~3번 과정을 "엄청난 양의 데이터에 대해 실시간으로 오류 없이 정확하게 계산하는 것"은 정말 정말 어려운 일입니다. <br><br>
 
@@ -402,7 +402,7 @@
         <div>
             <span >Q. </span>
             <span>TV지원 이용권으로 볼 수 있는 기기가 궁금해요. </span>
-            <a onclick="this.nextSibling.style.display=(this.nextSibling.style.display=='none')?'block':'none';" href="javascript:void(0)"> 
+            <a onclick="this.nextSibling.style.display=(this.nextSibling.style.display=='none')?'block':'none';" href="javascript:void(0)">
                     <span style="float:right"><img src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-down-01-128.png"  onmouseover="this.src='https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-up-01-128.png'"  onmouseout="this.src='https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-down-01-128.png'" width="50px"/></span>
             <div style="DISPLAY: none">
                 <br><br><hr>
@@ -429,7 +429,7 @@
         <div>
             <span>Q. </span>
             <span>화질이 별로예요. 좋은 화질로 볼 수 없나요? </span>
-            <a onclick="this.nextSibling.style.display=(this.nextSibling.style.display=='none')?'block':'none';" href="javascript:void(0)"> 
+            <a onclick="this.nextSibling.style.display=(this.nextSibling.style.display=='none')?'block':'none';" href="javascript:void(0)">
                     <span style="float:right"><img src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-down-01-128.png"  onmouseover="this.src='https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-up-01-128.png'"  onmouseout="this.src='https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-down-01-128.png'" width="50px"/></span>
             <div style="DISPLAY: none">
                 <br><br><hr>
@@ -453,19 +453,19 @@
             </a></div>
             </div>
         <br><br><hr>
-        <div>  
+        <div>
             <span>Q. </span>
             <span>모바일에서 화질 조정을 할 수 있나요? </span>
-            <a onclick="this.nextSibling.style.display=(this.nextSibling.style.display=='none')?'block':'none';" href="javascript:void(0)"> 
+            <a onclick="this.nextSibling.style.display=(this.nextSibling.style.display=='none')?'block':'none';" href="javascript:void(0)">
                     <span style="float:right"><img src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-down-01-128.png"  onmouseover="this.src='https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-up-01-128.png'"  onmouseout="this.src='https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-down-01-128.png'" width="50px"/></span>
             <div style="DISPLAY: none">
                 <br><br><hr>
                     무비하이는 무하에서 쌓은 데이터를 활용해 영화와 드라마를 추천해 드려요!<br><br>
-                    1. 먼저, 내가 매긴 별점을 통해 취향이 비슷한 사람을 찾습니다. 누구나 영화나 드라마를 볼 때 자기만의 중요한 기준이 있습니다. 예를 들면, "난 영상미나 음악이 중요해… 아니야 스토리가 갑이지… 에이 영화는 연기 보는 맛이야…" 같은 것이죠. 결국 나도 모르게 이 기준에 따라 별점을 주게 되고, 따라서 내가 매긴 별점들을 쭈욱 분석하면 내가 중요하게 생각하는 기준, 나만의 성향을 분석할 수가 있습니다. 그리고 이렇게 분석한 성향을 서로 서로 비교하면, 아주 비슷한 성향을 가진 사람들을 찾을 수 있겠죠. 이 사람들이 바로 나와 취향이 비슷한 사람들입니다.<br><br> 
+                    1. 먼저, 내가 매긴 별점을 통해 취향이 비슷한 사람을 찾습니다. 누구나 영화나 드라마를 볼 때 자기만의 중요한 기준이 있습니다. 예를 들면, "난 영상미나 음악이 중요해… 아니야 스토리가 갑이지… 에이 영화는 연기 보는 맛이야…" 같은 것이죠. 결국 나도 모르게 이 기준에 따라 별점을 주게 되고, 따라서 내가 매긴 별점들을 쭈욱 분석하면 내가 중요하게 생각하는 기준, 나만의 성향을 분석할 수가 있습니다. 그리고 이렇게 분석한 성향을 서로 서로 비교하면, 아주 비슷한 성향을 가진 사람들을 찾을 수 있겠죠. 이 사람들이 바로 나와 취향이 비슷한 사람들입니다.<br><br>
 
-                    2. 이렇게 내 취향과 비슷한 사람들이 매긴 평가를 모아서 작품 별로 "내 예상별점"을 만듭니다. 나와 취향이 비슷한 사람들이 개별 작품에 매긴 점수는, 아마도 내가 실제로 매길 점수와 아주 아주 유사할겁니다. 즉 보지 않았더라도 이 사람들이 매긴 점수를 보면, 내가 이 작품에 몇 점을 줄지 미리 알 수가 있는 것이죠. 무하는 나와 취향이 비슷한 사람들의 평가를 종합해서, 자동으로 작품 별 "내 예상별점"을 계산하고 즉시 보여줍니다.<br><br> 
+                    2. 이렇게 내 취향과 비슷한 사람들이 매긴 평가를 모아서 작품 별로 "내 예상별점"을 만듭니다. 나와 취향이 비슷한 사람들이 개별 작품에 매긴 점수는, 아마도 내가 실제로 매길 점수와 아주 아주 유사할겁니다. 즉 보지 않았더라도 이 사람들이 매긴 점수를 보면, 내가 이 작품에 몇 점을 줄지 미리 알 수가 있는 것이죠. 무하는 나와 취향이 비슷한 사람들의 평가를 종합해서, 자동으로 작품 별 "내 예상별점"을 계산하고 즉시 보여줍니다.<br><br>
 
-                    3. "내 예상별점"이 높은 작품들을 추천합니다 이렇게 계산된 예상별점이 "3점 후반대 ~ 5점"에 가까운 영화들은 내가 재미있게 즐길 확률이 높습니다. 따라서 이런 작품들을 나에게 추천하되, 만약 내가 좋아하는 감독이나 장르에 해당한다면 가산점을 줘서 더 먼저 추천합니다.<br><br> 
+                    3. "내 예상별점"이 높은 작품들을 추천합니다 이렇게 계산된 예상별점이 "3점 후반대 ~ 5점"에 가까운 영화들은 내가 재미있게 즐길 확률이 높습니다. 따라서 이런 작품들을 나에게 추천하되, 만약 내가 좋아하는 감독이나 장르에 해당한다면 가산점을 줘서 더 먼저 추천합니다.<br><br>
 
                     어때요? 참 쉽죠! 물론 이건 말로 간단히 풀어 설명한 것이고, 실제 위의 1~3번 과정을 "엄청난 양의 데이터에 대해 실시간으로 오류 없이 정확하게 계산하는 것"은 정말 정말 어려운 일입니다. <br><br>
 
@@ -475,7 +475,7 @@
         </div>
         <br><br><hr>
       </article>
-      
+
       <!-- Footer -->
 	<footer>
 		<div class="footer__links">
@@ -491,15 +491,15 @@
 			<div class="footer__contact" data-reactid=".2dgluquabr4.6.1.0">
 				<div class="footer__contact-title" data-reactid=".2dgluquabr4.6.1.0.0">고객센터(이용 및 결제 문의)</div>
 				<div class="footer__contact-desc" data-reactid=".2dgluquabr4.6.1.0.1">
-					<a href="mailto:cs@watchaplay.net" data-reactid=".2dgluquabr4.6.1.0.1.0">cs@watchaplay.net</a>
-					<span data-reactid=".2dgluquabr4.6.1.0.1.1"> / 02-515-9985(유료)</span>
+					<a href="mailto:cs@watchaplay.net" data-reactid=".2dgluquabr4.6.1.0.1.0">https://www.kw.ac.kr</a>
+					<span data-reactid=".2dgluquabr4.6.1.0.1.1"> / 000-1234-5678 (유료)</span>
 				</div>
 			</div>
 			<div class="footer__contact" data-reactid=".2dgluquabr4.6.1.1">
 				<div class="footer__contact-title" data-reactid=".2dgluquabr4.6.1.1.0">제휴 및 대외 협력</div>
 				<div class="footer__contact-desc" data-reactid=".2dgluquabr4.6.1.1.1">
-					<a href="mailto:contact@watcha.com" data-reactid=".2dgluquabr4.6.1.1.1.0">contact@watcha.com</a>
-					<span data-reactid=".2dgluquabr4.6.1.1.1.1"> / 070-7554-9696 (유료)</span>
+					<a href="mailto:contact@watcha.com" data-reactid=".2dgluquabr4.6.1.1.1.0">https://ce.kw.ac.kr:501</a>
+					<span data-reactid=".2dgluquabr4.6.1.1.1.1"> / 000-1234-5678 (유료)</span>
 				</div>
 			</div>
 		</div>

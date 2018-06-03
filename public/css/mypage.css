@@ -324,7 +324,7 @@ color: white !important;
 html {
 background-size: cover;
 height: 100%;
-width: 90%;
+width: 100%;
 position: absolute;
 overflow:scroll;
 }

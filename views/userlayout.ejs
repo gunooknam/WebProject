@@ -8,9 +8,44 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <meta name="viewport" content="width=device-width", initial-scale="1">
-    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/css/mypage.css" />
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
 
+<style>
+footer {
+    box-sizing: border-box;
+  	margin: 0;
+    background: #121212;
+  	height: 160px;
+  	width: 100%;
+  	bottom: 0;
+  	top: 850px;
+  	padding: 27px 50px 54px;
+    position: absolute;
+}
+
+.footer__links {
+	vertical-align : middle;
+	color: rgba(255, 255, 255, 0.2);
+	font-size: 10px;
+	letter-spacing: -0.5px;
+}
+
+.footer__contact-info {
+	margin-top : 24px;
+	vertical-align : middle;
+	color: rgba(255, 255, 255, 0.7);
+	font-size: 12px;
+	letter-spacing: -0.5px;
+	line-height: 20px;
+}
+.footer__contact-info .footer__contact .footer__contact-title {
+	float: left;
+	width: 160px;
+}
+.footer .footer__contact-info .footer__contact .footer__contact-desc {
+	float: left;
+}
 </style>
 <script>
       $(function(){
@@ -68,11 +103,12 @@
 
 
 </script>
+<body>
 <nav>
     <div class='logo'><img src='/images/logo.png' />
         <ul style="list-style: none; display: flex; margin:10; align-items: center;">
           <li class='active' style="margin-left:20% ; width: 100px;font-size: 18px;justify-content: center; align-items: center;"><a href="/" style="text-decoration:none; color: white;">홈</a></li>
-          <li style="width: 150px;font-size: 18px;justify-content: center;align-items: center;">평가하기</li>
+          <li style="width: 150px;font-size: 18px;justify-content: center;align-items: center;"><a href="/category" style="text-decoration:none; color: white;">카테고리</a></li>
           <!-- <span style="float:right">
             <% if( typeof user !== "undefined") { %>
             <li style=" width: 150px;font-size: 18px ;align-items: center;justify-content: center;" ><%= user.nickname %><a href="/auth/logout"></a></li>
@@ -342,6 +378,34 @@
             </div>
         </div>
       </div>
+</body>
+      <footer>
+    		<div class="footer__links">
+    			<a href="#">무하 서비스 이용약관</a>
+    			<span>   |   </span>
+    			<a href="#" class="privacy">개인정보 취급방침</a>
+    			<span>   |   </span>
+    			<a class="" href="/help">고객센터</a>
+    			<span>   |   </span>
+    			<a href="http://frograms.com/joinus" target="_blank">채용정보</a>
+    		</div>
+    		<div class="footer__contact-info" data-reactid=".2dgluquabr4.6.1">
+    			<div class="footer__contact" data-reactid=".2dgluquabr4.6.1.0">
+    				<div class="footer__contact-title" data-reactid=".2dgluquabr4.6.1.0.0">고객센터(이용 및 결제 문의)</div>
+    				<div class="footer__contact-desc" data-reactid=".2dgluquabr4.6.1.0.1">
+    					<a href="mailto:cs@watchaplay.net" data-reactid=".2dgluquabr4.6.1.0.1.0">https://www.kw.ac.kr</a>
+    					<span data-reactid=".2dgluquabr4.6.1.0.1.1"> / 000-1234-5678 (유료)</span>
+    				</div>
+    			</div>
+    			<div class="footer__contact" data-reactid=".2dgluquabr4.6.1.1">
+    				<div class="footer__contact-title" data-reactid=".2dgluquabr4.6.1.1.0">제휴 및 대외 협력</div>
+    				<div class="footer__contact-desc" data-reactid=".2dgluquabr4.6.1.1.1">
+    					<a href="mailto:contact@watcha.com" data-reactid=".2dgluquabr4.6.1.1.1.0">https://ce.kw.ac.kr:501</a>
+    					<span data-reactid=".2dgluquabr4.6.1.1.1.1"> / 000-1234-5678 (유료)</span>
+    				</div>
+    			</div>
+    		</div>
+    	</footer>
 
       <script>
       var num;
