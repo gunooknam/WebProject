@@ -1,11 +1,8 @@
-<<<<<<< HEAD
-=======
 hr {
     height: 2px;
-    background:rgba(235, 235, 235, 1); 
+    background:rgba(235, 235, 235, 1);
     border: rgba(235, 235, 235, 1);
 }
->>>>>>> 1d633e12f8d9dedc12cfad63d94ed35ba1c3260e
 a {
   color: #00B7FF;
 }
@@ -81,13 +78,13 @@ nav span {
 
 footer {
     box-sizing: border-box;
-	margin: 0;
+  	margin: 0;
     background: #121212;
-	height: 160px;
-	width: 100%;
-	bottom: 0;
-	top: 700px;
-	padding: 27px 50px 54px;
+  	height: 160px;
+  	width: 100%;
+  	bottom: 0;
+  	top: 700px;
+  	padding: 27px 50px 54px;
 }
 
 .footer__links {
