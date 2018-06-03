@@ -13,7 +13,7 @@ var conn = mysql.createConnection({
 });
 router.get('/',function (req,res,next) {//사용자 아이디
     console.log("wish del page");
-    const user_id = req.user.authId;
+    const user_id = req.user.id;
     const movie_id = req.query.movie_id;
     var sql = 'DELETE from wish WHERE user_id=? and movie_id=?';
 
