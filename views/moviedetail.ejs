@@ -147,6 +147,7 @@ $(function(){
 				<div style="width:100%; float:left;">
 							<div style="width:50%; float:left;">
 							<% if(user !== undefined) { %>
+												 	<input id="vuser" style="display:none" value="<%= user.authId %>">
 			                    <button class='likes' type="submit" onclick="wishadd_event_login(<%= rows[0].id%>)">
 			                <% } else { %>
 			                    <button class='likes' type="submit" onclick="wish_event_logout(<%= rows[0].id%>)">
@@ -160,11 +161,11 @@ $(function(){
 								</button>
 							</div>
 							<div style="width:50%; float:left;">
-							<% if(user !== undefined) { %>
-			                    <button class='likes' type="submit" onclick="wishdel_event_login(<%= rows[0].movie_id%>)">
-			                <% } else { %>
-			                    <button class='likes' type="submit" onclick="wish_event_logout(<%= rows[0].movie_id%>)">
-			                <% } %>
+								<% if(user !== undefined) { %>
+                    <button class='likes' type="submit" onclick="wishdel_event_login(<%= rows[0].id%>)">
+                <% } else { %>
+                    <button class='likes' type="submit" onclick="wish_event_logout(<%= rows[0].id%>)">
+                <% } %>
 									<div style="width:40%; float:left;">
 										<img src="https://cdn3.iconfinder.com/data/icons/facebook-ui-flat/48/Facebook_UI-38-128.png" width=100% align: "middle">
 									</div>
@@ -185,7 +186,8 @@ $(function(){
 <script>
 	function purchase(id) {
 		const purchased = <%= rows[0].purchased > 0 %>;
-		if(purchased) {
+		const ticket = <%= user.ticket %>;
+		if(purchased || ticket ) {
 			window.location.href='/moviedetail/watch';
 			return;
 		} else {
@@ -212,6 +214,7 @@ $(function(){
 	            <div class="row" id="post-review-box" style="display:none;">
 	                <div class="col-md-12">
 	                    <form accept-charset="UTF-8" action="/moviedetail/review" method="post">
+
 													<input id="movieId" name="movieId" style="display:none" value="<%= rows[0].id %>">
 	                        <input id="ratings-hidden" name="rating" type="hidden" value="1">
 	                        <input class="form-control animated" cols="50" id="new-review" name="comment" placeholder="평점과 리뷰를 적어주세요" rows="5" required>
@@ -307,7 +310,7 @@ function vailduser(){
 	else{
 		//var review = <%-JSON.stringify(review)%>;
 	}
-	var pass = prompt("비밀번호를 입력하세요.","여기가 비밀번호를 입력하는 text box입니다");
+	var pass = prompt("비밀번호를 입력하세요."," 비밀번호를 입력해주세요");
 	if($("#vuser").val() === $("#replyauthId").val() && (pass===$("#replypasswd").val())){
 		return true;
 	}

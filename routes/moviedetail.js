@@ -17,13 +17,19 @@ var connection = mysql.createConnection({
 
 router.get('/', function(req, res, next) {
 	  const id = req.query.id;
+		console.log(id);
 	  const purchased = false;
+		if(!req.user){
+			res.writeHead('200', {'Content-Type':'text/html; charset=utf-8'});
+			return res.write("<script>alert('로그인 하셔야 이용할 수 있습니다.');location.href='http://localhost:3000/';</script>");
+		}
+
 	  connection.query(`SELECT *, (select count(movie_id) from purchase where user_id=${req.user.id} and movie_id=${req.query.id}) purchased FROM movie JOIN director ON movie.director_id = director.id WHERE movie.id=${id}`, function(err, rows) {
 		  if (err) console.error("err:" + err);
-		  console.log(rows[0].purhcased)
+
 		  //console.log("rows: " +JSON.stringify(rows));
 			connection.query(`SELECT * FROM review WHERE movieId=${id}`, function(err, review) {
-				rows[0].id=id;
+					 rows[0].id=id;
 					 res.render('moviedetail', {title: 'moviedetail', rows: rows, user:req.user, review : review});
 			 });
 		});
@@ -31,13 +37,14 @@ router.get('/', function(req, res, next) {
 
 router.post('/review', function(req,res){
 	 const id = req.body.movieId;
-	 console.log(id);
+	 console.log("리뷰등록"+id);
 	 console.log(req.user.authId);
 	 const purchased = false;
 	  connection.query(`select * from movie join director on movie.director_id = director.id where movie.id=${id}`, function(err, results) {
 		const score= req.body.rating;
 		console.log(results);
 		results[0].id=id;
+
 		connection.query(`SELECT * FROM review WHERE movieId=${id}`, function(err, review) {
 			if(err)console.log("에러");
 			var sql = "insert into review (movieId, authId, nickname , review , star, passwd) values(?,?,?,?,?,?)";

@@ -121,6 +121,13 @@ router.get('/pay', function(req, res, next) {
 });
 
 router.post('/pay', function(req, res, next) {
+
+  var sql = "update user set ticket=? where authId=?"
+  conn.query(sql, ["1",req.user.authId], function(err,rows){
+    if(err) console.log(err);
+    console.log("ss");
+  });
+
   var term=req.body.term;
   console.log('test');
   var selsql= "select * from ticket where authId=?"
@@ -150,6 +157,9 @@ router.post('/pay', function(req, res, next) {
         conn.query(sql, [ req.user.authId, term, time , expiredtime] , function(err,rows){
         if(err) { console.error(err); }
         console.log(" 이용권 충전완료 ", rows);
+
+
+
         res.writeHead('200', {'Content-Type':'text/html; charset=utf-8'});
         return res.write("<script>alert('이용권을 구매하였습니다.'); location.href='http://localhost:3000/users';</script>");
         });
@@ -175,6 +185,7 @@ router.post('/paycash', function(req, res, next) {
 });
 
 router.get('/wishlist', function(req, res, next) {
+  
   if(!req.user) res.redirect('/auth/login')
   conn.query(`select *, '1' type from wish, movie where movie.id = wish.movie_id and wish.user_id=3 union
   select *, '2' type from purchase, movie where movie.id = purchase.movie_id and purchase.user_id=3;`, (err, rows) => {

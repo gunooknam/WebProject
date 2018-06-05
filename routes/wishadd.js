@@ -18,14 +18,14 @@ router.get('/',function (req,res,next) {//사용자 아이디
     console.log(user_id);
     const movie_id = req.query.movie_id;
     var sql = 'insert into wish(user_id,movie_id) values(?,?)';
-
+  	console.log(movie_id);
     conn.query(sql,[user_id,movie_id], function(err, rows, fields) {
     if(err) {
-          //이 쿼리문에서 에러가 발생했을때는 쿼리문의 수행을 취소하고 롤백합니다.
-        // console.log(err);
-        // console.log(req.user.authId +"=유저id "+req.query.movie_id +"=영화id wish table에 이미 존재");
-        conn.rollback(function () {
-            console.error('rollback error1');
+        //이 쿼리문에서 에러가 발생했을때는 쿼리문의 수행을 취소하고 롤백합니다.
+          console.log(err);
+        	// console.log(req.user.authId +"=유저id "+req.query.movie_id +"=영화id wish table에 이미 존재");
+        	conn.rollback(function () {
+          console.error('rollback error1');
           });
         }
         else
@@ -34,6 +34,7 @@ router.get('/',function (req,res,next) {//사용자 아이디
             if(err) console.log(err);
             console.log(req.user.authId +"=유저id "+req.query.movie_id +"=영화id wish table에 추가");
             res.redirect('/moviedetail?id='+movie_id);
+						//res.redirect('/');
           });
         }
     });

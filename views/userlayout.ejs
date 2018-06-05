@@ -19,7 +19,7 @@ footer {
   	height: 160px;
   	width: 100%;
   	bottom: 0;
-  	top: 850px;
+  	top: 900px;
   	padding: 27px 50px 54px;
     position: absolute;
 }
@@ -353,24 +353,28 @@ footer {
                               </thead>
                               <tbody>
                                   <%
-                                    if(ticket.length==0){
-                                      var use="이용권 없음";
-                                    }else
-                                      var use="이용권 보유중";
-                                    for(var i=0; i<ticket.length; i++)
-                                    {
-                                      var tick = ticket[i];
-                                      var buytime = ticket[i].buyday.toLocaleString();
-                                      var expiredtime = ticket[i].expired.toLocaleString();
+                                    var buytime=" ";
+                                    var expiredtime=" ";
+                                    var use="이용권 없음";
+                                    if(typeof ticket === "undefined"){  %>
+
+                                    <%
+                                    }else{
+                                      use="";
+                                      for(var i=0; i<ticket.length; i++)
+                                      {
+                                        var tick = ticket[i];
+                                        var buytime = ticket[i].buyday.toLocaleString();
+                                        var expiredtime = ticket[i].expired.toLocaleString();
+                                      }
+                                    }
                                   %>
                                   <tr>
                                       <td><%= use%></td>
                                       <td><%= buytime %></td>
                                       <td><%= expiredtime %></td>
                                   </tr>
-                                  <%
-                                      }
-                                  %>
+
                               </tbody>
                           </table>
                       </div>

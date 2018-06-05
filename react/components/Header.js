@@ -10,8 +10,12 @@ const Header = ({ activeIndex, user }) => {
             title: '카테고리',
             link: '/category',
         },
+        {
+            title: '찜목록',
+            link: '/users/wishlist',
+        }
     ];
-    
+
     const mouseOver = () => {
         if(user) document.querySelector('.user span').classList.add('active');
     }
